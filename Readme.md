@@ -71,11 +71,106 @@
     </li>
 </h1>
 <h2>EndPoints da API</h2>
+<h3><strong>User's EndPoint</strong></h3>
+
+<h3>Login</h3>
 
 ```Post```
 
 
-<h4>/User</h4>
+<h4>/user/login</h4>
+<strong>Body:</strong>
+
+```ruby
+{
+    "email": String,
+    "password": String,
+}
+```
+
+<h4>
+    Return:
+</h4>
+
+```status code:``` 200 ```ok```
+
+```
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ"
+}
+```
+
+<h3>CreateUser</h3>
+
+```Post```
+
+
+<h4>/user</h4>
+<strong>Body:</strong>
+
+```ruby
+{
+    "id": Long,
+    "email": String,
+    "name": String,
+    "password": String,
+    "birth": String,
+    "location": String,
+    "profileAvatarUrl": String,
+    "phone": String,
+    "socialMidia?": {
+        "instagram?": String,
+        "facebook?": String,
+    }
+}
+```
+
+<h4>
+    Return:
+</h4>
+
+```status code:``` 201 ```created```
+
+
+<h3>getOneUser</h3>
+
+```get```
+
+
+<h4>/user/{idUser}</h4>
+
+
+<h4>
+    Return:
+</h4>
+
+
+```ruby
+{
+    "id": Long,
+    "email": String,
+    "name": String,
+    "birth": String,
+    "location": String,
+    "profileAvatarUrl": String,
+    "phone": String,
+    "socialMidia?": {
+        "instagram?": String,
+        "facebook?": String,
+    },
+    "postsPets": []
+}
+```
+
+```status code:``` 200 ```OK```
+
+
+<h3>updateUser</h3>
+
+```patch```
+
+<h4>/user/{idUser}</h4>
+<strong>Body:</strong>
 
 
 ```ruby
@@ -87,14 +182,206 @@
     "birth": String,
     "location": String,
     "profileAvatarUrl": String,
-    "phone": String
-    "socialMidia": {
+    "phone": String,
+    "socialMidia?": {
         "instagram?": String,
         "facebook?": String,
     }
 }
 ```
 
-<h4>Return:</h4>
+<h4>
+    Return:
+</h4>
+
+```status code:``` 200 ```OK```
 
 
+<h2><strong>postPet's EndPoint</strong></h2>
+
+
+<h3>createdPost</h3>
+
+```post```
+
+<h4>/post</h4>
+<strong>Body:</strong>
+
+
+```ruby
+{
+    "id": Long,
+    "specie": String,
+    "name": String,
+    "race": String,
+    "sex": String,
+    "age": String,
+    "vitalInfos?": {
+        "isVaccinated": Boolean,
+        "isCastrated": Boolean,
+        "isPedigree": Boolean,
+        "especialCares": Boolean,
+        "isDewormed": Boolean
+    },
+    "size": String,
+    "weigth": String,
+    "About": String,
+    "OwnerId": String,
+    "isAdopted": Boolean
+}
+```
+
+<h4>
+    Return:
+</h4>
+
+```status code:``` 201 ```created```
+
+
+<h3>getOneForId</h3>
+
+```get```
+
+<h4>/post/{postId}</h4>
+<strong>Body:</strong>
+
+<h4>
+    Return:
+</h4>
+
+
+```ruby
+{
+    "id": Long,
+    "specie": String,
+    "name": String,
+    "race": String,
+    "sex": String,
+    "age": String,
+    "vitalInfos?": {
+        "isVaccinated": Boolean,
+        "isCastrated": Boolean,
+        "isPedigree": Boolean,
+        "especialCares": Boolean,
+        "isDewormed": Boolean
+    },
+    "size": String,
+    "weigth": String,
+    "About": String,
+    "OwnerId": String,
+    "isAdopted": Boolean
+}
+```
+
+```status code:``` 200 ```ok```
+
+
+<h3>getAll</h3>
+
+```get```
+
+<h4>/post</h4>
+<strong>Body:</strong>
+
+<h4>
+    Return:
+</h4>
+
+
+```ruby
+[
+    {
+        "id": Long,
+        "specie": String,
+        "name": String,
+        "race": String,
+        "sex": String,
+        "age": String,
+        "vitalInfos?": {
+            "isVaccinated": Boolean,
+            "isCastrated": Boolean,
+            "isPedigree": Boolean,
+            "especialCares": Boolean,
+            "isDewormed": Boolean
+        },
+        "size": String,
+        "weigth": String,
+        "About": String,
+        "OwnerId": String,
+        "isAdopted": Boolean
+    },
+    {
+        "id": Long,
+        "specie": String,
+        "name": String,
+        "race": String,
+        "sex": String,
+        "age": String,
+        "vitalInfos?": {
+            "isVaccinated": Boolean,
+            "isCastrated": Boolean,
+            "isPedigree": Boolean,
+            "especialCares": Boolean,
+            "isDewormed": Boolean
+        },
+        "size": String,
+        "weigth": String,
+        "About": String,
+        "OwnerId": String,
+        "isAdopted": Boolean
+    }
+]
+```
+
+```status code:``` 200 ```ok```
+
+
+
+<h3>updatePost</h3>
+
+```patch```
+
+<h4>/post/{postId}</h4>
+<strong>Body:</strong>
+
+
+```ruby
+{
+    "id": Long,
+    "specie": String,
+    "name": String,
+    "race": String,
+    "sex": String,
+    "age": String,
+    "vitalInfos?": {
+        "isVaccinated": Boolean,
+        "isCastrated": Boolean,
+        "isPedigree": Boolean,
+        "especialCares": Boolean,
+        "isDewormed": Boolean
+    },
+    "size": String,
+    "weigth": String,
+    "About": String,
+    "isAdopted": Boolean
+}
+```
+
+<h4>
+    Return:
+</h4>
+
+```status code:``` 200 ```ok```
+
+<h3>deletePost</h3>
+
+```delete```
+
+<h4>/post/{postId}</h4>
+<strong>Body:</strong>
+
+<h4>
+    Return:
+</h4>
+
+```status code:``` 204 ```No Content```
