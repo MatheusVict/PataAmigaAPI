@@ -65,7 +65,7 @@
 <img height="400em" src="https://user-images.githubusercontent.com/110360268/230796975-239850e8-f55c-4b30-af8d-f115c44a8327.png"/>
 </div>
 
-<h2 align="center"> Tela do Perfil do Pet </h2>
+<h2 align="center"> Tela do Perfil de Pet </h2>
 
 <div align="center">
 <img height="1000em" src="https://user-images.githubusercontent.com/110360268/230796985-a42275ac-a115-4c96-8812-93425a31ead6.png"/>
