@@ -108,6 +108,7 @@
     </li>
 </h1>
 <h4>Requisitos funcionais</h4>
+
 Caso de Uso 1: Cadastro de Gerente
 Descrição: Um administrador pode adicionar um novo gerente ao sistema. O administrador deve fornecer informações básicas, como nome, e-mail e senha, para criar uma nova conta de usuário. Além disso, o administrador deve ser capaz de inserir informações adicionais do perfil do Gerente, tais como salário, equipe responsável e projeto.
 
