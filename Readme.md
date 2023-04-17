@@ -679,4 +679,4 @@ Se o usuário escolher não fechar o aplicativo ficará aberto.
     Return:
 </h4>
 
-```status code:``` 200```OK`
+```status code:``` 200 ```OK```
