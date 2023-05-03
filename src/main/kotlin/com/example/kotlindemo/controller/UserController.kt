@@ -23,17 +23,17 @@ class UserController(private val userRepository: UserRepository, private val use
     fun createNewArticle(@Valid @RequestBody user: User): User = userService.createUser(user)
 
     @GetMapping("/user/{id}")
-    fun getArticleById(@PathVariable(value = "id") articleId: Long): ResponseEntity<User> {
-        return userRepository.findById(articleId).map { article ->
-            ResponseEntity.ok(article)
+    fun getUserById(@PathVariable(value = "id") userId: Long): ResponseEntity<User> {
+        return userRepository.findById(userId).map { user ->
+            ResponseEntity.ok(user)
         }.orElse(ResponseEntity.notFound().build())
     }
 
     @PutMapping("/user/{id}")
-    fun updateArticleById(@PathVariable(value = "id") articleId: Long,
+    fun updateUserId(@PathVariable(value = "id") userId: Long,
                           @Valid @RequestBody newUser: User): ResponseEntity<User> {
 
-        return userRepository.findById(articleId).map { existingUser ->
+        return userRepository.findById(userId).map { existingUser ->
             val updatedUser: User = existingUser
                     .copy(email = newUser.email, id = newUser.id)
 
@@ -43,10 +43,10 @@ class UserController(private val userRepository: UserRepository, private val use
     }
 
     @DeleteMapping("/user/{id}")
-    fun deleteArticleById(@PathVariable(value = "id") articleId: Long): ResponseEntity<Void> {
+    fun deleteUserId(@PathVariable(value = "id") userId: Long): ResponseEntity<Void> {
 
-        return userRepository.findById(articleId).map { article  ->
-            userRepository.delete(article)
+        return userRepository.findById(userId).map { user  ->
+            userRepository.delete(user)
             ResponseEntity<Void>(HttpStatus.OK)
         }.orElse(ResponseEntity.notFound().build())
 

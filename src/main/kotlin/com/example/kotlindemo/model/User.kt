@@ -1,5 +1,6 @@
 package com.example.kotlindemo.model
 
+import org.mindrot.jbcrypt.BCrypt
 import org.springframework.lang.Nullable
 import javax.persistence.Column
 import javax.persistence.Entity
@@ -23,7 +24,7 @@ data class User (
     val email: String = "",
 
     @get: NotBlank
-    val password: String = "",
+    var password: String = "",
 
     @get: NotBlank
     val birth: String = "",
