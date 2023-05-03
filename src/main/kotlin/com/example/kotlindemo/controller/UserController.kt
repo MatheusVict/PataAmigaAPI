@@ -1,11 +1,13 @@
 package com.example.kotlindemo.controller
 
 import com.example.kotlindemo.Service.UserService
+import com.example.kotlindemo.interfaces.UserInterface
 import com.example.kotlindemo.model.User
 import com.example.kotlindemo.repository.UserRepository
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import org.springframework.web.multipart.MultipartFile
 import java.util.*
 import javax.validation.Valid
 
@@ -17,11 +19,8 @@ class UserController(private val userRepository: UserRepository, private val use
     fun getAllArticles(): List<User> =
             userService.getAllUsers()
 
-
     @PostMapping("/user")
-    fun createNewArticle(@Valid @RequestBody user: User): User =
-            userRepository.save(user)
-
+    fun createNewArticle(@Valid @RequestBody user: User): User = userService.createUser(user)
 
     @GetMapping("/user/{id}")
     fun getArticleById(@PathVariable(value = "id") articleId: Long): ResponseEntity<User> {
