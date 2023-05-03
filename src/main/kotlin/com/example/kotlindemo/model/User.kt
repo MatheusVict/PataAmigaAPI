@@ -2,16 +2,15 @@ package com.example.kotlindemo.model
 
 import org.mindrot.jbcrypt.BCrypt
 import org.springframework.lang.Nullable
+import javax.persistence.CascadeType
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
+import javax.persistence.OneToMany
 import javax.validation.constraints.NotBlank
 
-/**
- * Created by rajeevkumarsingh on 05/10/17.
- */
 @Entity
 data class User (
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,4 +48,7 @@ data class User (
 
     @Nullable
     val whatsapp: String?,
+
+    @OneToMany(targetEntity = PostPets::class, cascade = [CascadeType.ALL], orphanRemoval = true)
+    val postPets: List<PostPets>
 )

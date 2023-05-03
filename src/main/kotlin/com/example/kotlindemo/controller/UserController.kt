@@ -1,9 +1,9 @@
 package com.example.kotlindemo.controller
 
-import com.example.kotlindemo.Service.UserService
-import com.example.kotlindemo.interfaces.UserInterface
+
 import com.example.kotlindemo.model.User
 import com.example.kotlindemo.repository.UserRepository
+import org.mindrot.jbcrypt.BCrypt
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -13,14 +13,18 @@ import javax.validation.Valid
 
 @RestController
 @RequestMapping("/api")
-class UserController(private val userRepository: UserRepository, private val userService: UserService) {
+class UserController(private val userRepository: UserRepository) {
 
     @GetMapping("/user")
     fun getAllArticles(): List<User> =
-            userService.getAllUsers()
+        userRepository.findAll()
 
     @PostMapping("/user")
-    fun createNewArticle(@Valid @RequestBody user: User): User = userService.createUser(user)
+    fun createNewArticle(@Valid @RequestBody user: User): User {
+        val encodedPassword = BCrypt.hashpw(user.password, BCrypt.gensalt())
+        user.password = encodedPassword
+        return userRepository.save(user)
+    }
 
     @GetMapping("/user/{id}")
     fun getUserById(@PathVariable(value = "id") userId: Long): ResponseEntity<User> {
@@ -35,7 +39,19 @@ class UserController(private val userRepository: UserRepository, private val use
 
         return userRepository.findById(userId).map { existingUser ->
             val updatedUser: User = existingUser
-                    .copy(email = newUser.email, id = newUser.id)
+                    .copy(
+                        email = newUser.email,
+                        password = newUser.password,
+                        name = newUser.name,
+                        banner = newUser.banner,
+                        birth = newUser.birth,
+                        facebook = newUser.facebook,
+                        instagram = newUser.instagram,
+                        location = newUser.location,
+                        phone = newUser.phone,
+                        profilePic = newUser.profilePic,
+                        whatsapp = newUser.whatsapp
+                    )
 
             ResponseEntity.ok().body(userRepository.save(updatedUser))
         }.orElse(ResponseEntity.notFound().build())
