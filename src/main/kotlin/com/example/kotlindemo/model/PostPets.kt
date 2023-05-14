@@ -3,7 +3,7 @@ package com.example.kotlindemo.model
 import javax.persistence.*
 
 @Entity
-class PostPets (
+data class PostPets (
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0,
@@ -48,5 +48,7 @@ class PostPets (
     val isEspecialNeeds: Boolean,
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
     val user: User
+
 )
