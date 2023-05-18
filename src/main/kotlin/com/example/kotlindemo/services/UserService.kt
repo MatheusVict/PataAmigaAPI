@@ -15,8 +15,7 @@ class UserService(private val userRepository: UserRepository) {
         this.userRepository.findAll()
 
     fun createNewUser(user: User): User {
-        val encodedPassword = BCrypt.hashpw(user.password, BCrypt.gensalt())
-        user.password = encodedPassword
+
         return this.userRepository.save(user)
     }
 

@@ -30,12 +30,12 @@ class UserController(private val userService: UserService) {
     fun updateUserId(@PathVariable(value = "id") userId: Long,
                           @Valid @RequestBody newUser: User): ResponseEntity<User> {
 
-        return this.updateUserId(userId, newUser)
+        return this.userService.updateUserId(userId, newUser)
 
     }
 
     @DeleteMapping("/user/{id}")
     fun deleteUserId(@PathVariable(value = "id") userId: Long): ResponseEntity<Void> {
-        return this.deleteUserId(userId)
+        return this.userService.deleteUserId(userId)
     }
 }

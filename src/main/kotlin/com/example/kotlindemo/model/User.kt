@@ -3,6 +3,7 @@ package com.example.kotlindemo.model
 import com.fasterxml.jackson.annotation.JsonIgnore
 import org.mindrot.jbcrypt.BCrypt
 import org.springframework.lang.Nullable
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import javax.persistence.CascadeType
 import javax.persistence.Column
 import javax.persistence.Entity
@@ -11,6 +12,8 @@ import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
 import javax.persistence.OneToMany
+import javax.persistence.PrePersist
+import javax.persistence.PreUpdate
 import javax.validation.constraints.NotBlank
 
 @Entity
@@ -51,6 +54,23 @@ data class User (
     @Nullable
     val whatsapp: String?,
 
-    @OneToMany(fetch=FetchType.LAZY ,targetEntity = PostPets::class)
-    val postPets: List<PostPets> = listOf()
-)
+    @OneToMany(mappedBy = "user", cascade = [CascadeType.ALL], orphanRemoval = true, targetEntity = PostPets::class)
+    val postPets: MutableList<PostPets> = mutableListOf()
+) {
+    @PrePersist
+    @PreUpdate
+    fun hashPassword() {
+        val encoder = BCryptPasswordEncoder()
+        password = encoder.encode(password)
+    }
+
+    /*fun addPostPets(postPets: PostPets) {
+        postPets.user = this
+        this.postPets.add(postPets)
+    }
+
+    fun removePostPets(postPets: PostPets) {
+        postPets.user = null
+        this.postPets.remove(postPets)
+    }*/
+}
