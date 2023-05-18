@@ -1,5 +1,6 @@
 package com.example.kotlindemo.model
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import org.mindrot.jbcrypt.BCrypt
 import org.springframework.lang.Nullable
 import javax.persistence.CascadeType
@@ -51,5 +52,5 @@ data class User (
     val whatsapp: String?,
 
     @OneToMany(fetch=FetchType.LAZY ,targetEntity = PostPets::class)
-    val postPets: List<PostPets>
+    val postPets: List<PostPets> = listOf()
 )

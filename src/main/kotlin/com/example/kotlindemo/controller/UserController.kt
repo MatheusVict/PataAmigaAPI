@@ -2,13 +2,9 @@ package com.example.kotlindemo.controller
 
 
 import com.example.kotlindemo.model.User
-import com.example.kotlindemo.repository.UserRepository
 import com.example.kotlindemo.services.UserService
-import org.mindrot.jbcrypt.BCrypt
-import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
-import org.springframework.web.multipart.MultipartFile
 import java.util.*
 import javax.validation.Valid
 
