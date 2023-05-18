@@ -36,7 +36,7 @@ class PostPetsController(private val postPetsRepository: PostPetsRepository) {
                 .copy(
                     about = newPostPets.about,
                     age = newPostPets.age,
-                    isAdpoted = newPostPets.isAdpoted,
+                    isAdopted = newPostPets.isAdopted,
                     isCastrated = newPostPets.isCastrated,
                     isDewormed = newPostPets.isDewormed,
                     isEspecialNeeds = newPostPets.isEspecialNeeds,

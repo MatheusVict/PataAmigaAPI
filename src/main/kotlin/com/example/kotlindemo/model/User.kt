@@ -5,6 +5,7 @@ import org.springframework.lang.Nullable
 import javax.persistence.CascadeType
 import javax.persistence.Column
 import javax.persistence.Entity
+import javax.persistence.FetchType
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
@@ -13,7 +14,7 @@ import javax.validation.constraints.NotBlank
 
 @Entity
 data class User (
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
     val id: Long = 0,
 
     @get: NotBlank
@@ -49,6 +50,6 @@ data class User (
     @Nullable
     val whatsapp: String?,
 
-    @OneToMany(targetEntity = PostPets::class, cascade = [CascadeType.ALL], orphanRemoval = true)
+    @OneToMany(fetch=FetchType.LAZY ,targetEntity = PostPets::class)
     val postPets: List<PostPets>
 )
