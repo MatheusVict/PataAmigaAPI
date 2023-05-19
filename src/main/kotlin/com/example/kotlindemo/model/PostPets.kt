@@ -51,6 +51,6 @@ data class PostPets (
 
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = User::class)
     @JoinColumn(name = "user_id", nullable = false)
-    val user: User
+    var user: User
 
 )

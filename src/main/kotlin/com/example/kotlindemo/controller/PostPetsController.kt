@@ -20,7 +20,7 @@ class PostPetsController(private val postPetsService: PostPetsService) {
          postPetsService.getPostPetsId(postPetsId)
 
     @PostMapping("/postsPets")
-    fun createNewPostPets(@Valid @RequestBody postPets: PostPets): PostPets =
+    fun createNewPostPets(@Valid @RequestBody postPets: PostPets): ResponseEntity<PostPets> =
         postPetsService.createNewPostPets(postPets)
 
 

@@ -418,6 +418,23 @@ Se o usuário escolher não fechar o aplicativo ficará aberto.
     Return:
 </h4>
 
+```ruby
+{
+    "id": Long,
+    "name": String,
+    "email": String,
+    "birth": String,
+    "location": String,
+    "profilePic": String,
+    "banner": String,
+    "phone": String,
+    "instagram": String,
+    "facebook": String,
+    "whatsapp": String,
+    "postPets": []
+}
+```
+
 ```status code:``` 201 ```created```
 
 
