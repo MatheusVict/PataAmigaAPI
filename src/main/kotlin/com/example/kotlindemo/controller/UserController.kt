@@ -18,6 +18,7 @@ class UserController(private val userService: UserService) {
 
     @PostMapping("/user")
     fun createNewUser(@Valid @RequestBody user: User): ResponseEntity<User> {
+
        return ResponseEntity.ok(this.userService.createNewUser(user))
     }
 

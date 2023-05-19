@@ -13,8 +13,8 @@ import javax.persistence.PrePersist
 import javax.persistence.PreUpdate
 import javax.validation.constraints.NotBlank
 
-@Entity
-data class Users (
+@Entity(name = "users")
+data class User (
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     val id: Long = 0,
 
@@ -51,8 +51,8 @@ data class Users (
     @Nullable
     val whatsapp: String?,
 
-    @OneToMany(mappedBy = "user")
-    val postPets: List<PostPets>
+    @OneToMany(targetEntity = PostPets::class, cascade = [CascadeType.ALL], orphanRemoval = true)
+    val postPets: MutableList<PostPets> = mutableListOf()
 ) {
     @PrePersist
     @PreUpdate

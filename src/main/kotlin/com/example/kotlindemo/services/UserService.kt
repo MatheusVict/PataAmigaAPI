@@ -2,7 +2,6 @@ package com.example.kotlindemo.services
 
 import com.example.kotlindemo.model.User
 import com.example.kotlindemo.repository.UserRepository
-import org.mindrot.jbcrypt.BCrypt
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
@@ -12,22 +11,22 @@ import org.springframework.web.bind.annotation.*
 class UserService(private val userRepository: UserRepository) {
 
     fun getAllUser(): List<User> =
-        this.userRepository.findAll()
+        userRepository.findAll()
 
     fun createNewUser(user: User): User {
 
-        return this.userRepository.save(user)
+        return userRepository.save(user)
     }
 
     fun getUserById(userId: Long): ResponseEntity<User> {
-        return this.userRepository.findById(userId).map { user ->
+        return userRepository.findById(userId).map { user ->
             ResponseEntity.ok(user)
         }.orElse(ResponseEntity.notFound().build())
     }
 
     fun updateUserId(userId: Long, newUser: User): ResponseEntity<User> {
 
-        return this.userRepository.findById(userId).map { existingUser ->
+        return userRepository.findById(userId).map { existingUser ->
             val updatedUser: User = existingUser
                 .copy(
                     email = newUser.email,
