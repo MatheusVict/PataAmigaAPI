@@ -2,15 +2,7 @@ package com.example.kotlindemo.model
 
 import org.springframework.lang.Nullable
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
-import javax.persistence.CascadeType
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
-import javax.persistence.Id
-import javax.persistence.OneToMany
-import javax.persistence.PrePersist
-import javax.persistence.PreUpdate
+import javax.persistence.*
 import javax.validation.constraints.NotBlank
 
 @Entity(name = "users")
@@ -43,16 +35,14 @@ data class User (
     val phone: String = "",
 
     @Nullable
-    val instagram: String?,
+    val instagram: String? = "",
 
     @Nullable
-    val facebook: String?,
+    val facebook: String? = "",
 
     @Nullable
-    val whatsapp: String?,
+    val whatsapp: String? = "",
 
-    @OneToMany(targetEntity = PostPets::class, cascade = [CascadeType.ALL], orphanRemoval = true)
-    val postPets: MutableList<PostPets> = mutableListOf()
 ) {
     @PrePersist
     @PreUpdate

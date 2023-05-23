@@ -36,6 +36,19 @@ class PostPetsService(private val postPetsRepository: PostPetsRepository, privat
         return ResponseEntity.status(userResponse.statusCode).build()
     }
 
+    fun getPostsByUser(userId: Long): ResponseEntity<List<PostPets>> {
+        val user = User(
+            id = userId
+        )
+        val posts = this.postPetsRepository.findByUser(user)
+        posts?.let {
+            return ResponseEntity.ok(it)
+        } ?: run {
+         return ResponseEntity.notFound().build()
+        }
+    }
+
+
 
     fun updatePostPetsId(postPetsId: Long, newPostPets: PostPets): ResponseEntity<PostPets> {
 

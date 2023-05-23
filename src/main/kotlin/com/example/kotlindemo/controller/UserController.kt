@@ -27,6 +27,7 @@ class UserController(private val userService: UserService) {
         return this.userService.getUserById(userId)
     }
 
+
     @PutMapping("/user/{id}")
     fun updateUserId(@PathVariable(value = "id") userId: Long,
                           @Valid @RequestBody newUser: User): ResponseEntity<UserReturnDTO>? {

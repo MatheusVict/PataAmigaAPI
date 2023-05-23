@@ -19,6 +19,10 @@ class PostPetsController(private val postPetsService: PostPetsService) {
     fun getPostPetsId(@PathVariable(value = "id") postPetsId: Long): ResponseEntity<PostPets> =
          postPetsService.getPostPetsId(postPetsId)
 
+     @GetMapping("/postsPets/users/{id}")
+    fun getPostPetsForId(@PathVariable(value = "id") userId: Long): ResponseEntity<List<PostPets>> =
+        postPetsService.getPostsByUser(userId)
+
     @PostMapping("/postsPets")
     fun createNewPostPets(@Valid @RequestBody postPets: PostPets): ResponseEntity<PostPets> =
         postPetsService.createNewPostPets(postPets)
