@@ -8,40 +8,40 @@ import javax.validation.constraints.NotBlank
 @Entity(name = "users")
 data class User (
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    val id: Long = 0,
+    var id: Long = 0,
 
     @get: NotBlank
-    val name: String = "",
+    var name: String = "",
 
     @get: NotBlank
-    val email: String = "",
+    var email: String = "",
 
     @get: NotBlank
     var password: String = "",
 
     @get: NotBlank
-    val birth: String = "",
+    var birth: String = "",
 
     @get: NotBlank
-    val location: String = "",
+    var location: String = "",
 
     @Column(name = "profile_pic")
-    val profilePic: String = "",
+    var profilePic: String = "",
 
     @get: NotBlank
-    val banner: String = "",
+    var banner: String = "",
 
     @get: NotBlank
-    val phone: String = "",
+    var phone: String = "",
 
     @Nullable
-    val instagram: String? = "",
+    var instagram: String? = "",
 
     @Nullable
-    val facebook: String? = "",
+    var facebook: String? = "",
 
     @Nullable
-    val whatsapp: String? = "",
+    var whatsapp: String? = "",
 
 ) {
     @PrePersist

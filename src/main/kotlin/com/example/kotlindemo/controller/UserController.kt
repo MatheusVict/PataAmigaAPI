@@ -1,6 +1,8 @@
 package com.example.kotlindemo.controller
 
 
+import com.example.kotlindemo.dtos.CreateUserDTO
+import com.example.kotlindemo.dtos.UpdateUserDTO
 import com.example.kotlindemo.dtos.UserReturnDTO
 import com.example.kotlindemo.model.User
 import com.example.kotlindemo.services.UserService
@@ -13,31 +15,32 @@ import javax.validation.Valid
 @RequestMapping("/api")
 class UserController(private val userService: UserService) {
 
-    @GetMapping("/user")
-    fun getAllUser(): List<UserReturnDTO> =
-        this.userService.getAllUser()
+  @GetMapping("/user")
+  fun getAllUser(): List<UserReturnDTO> =
+    this.userService.getAllUser()
 
-    @PostMapping("/user")
-    fun createNewUser(@Valid @RequestBody user: User): ResponseEntity<Any> {
-       return this.userService.createNewUser(user)
-    }
+  @PostMapping("/user")
+  fun createNewUser(@Valid @RequestBody user: CreateUserDTO): ResponseEntity<Any> {
+    return this.userService.createNewUser(user.toEntity())
+  }
 
-    @GetMapping("/user/{id}")
-    fun getUserById(@PathVariable(value = "id") userId: Long): ResponseEntity<User> {
-        return this.userService.getUserById(userId)
-    }
+  @GetMapping("/user/{id}")
+  fun getUserById(@PathVariable(value = "id") userId: Long): ResponseEntity<UserReturnDTO> {
+    return ResponseEntity.ok().body(UserReturnDTO(this.userService.getUserById(userId)))
+  }
 
 
-    @PutMapping("/user/{id}")
-    fun updateUserId(@PathVariable(value = "id") userId: Long,
-                          @Valid @RequestBody newUser: User): ResponseEntity<UserReturnDTO>? {
+  @PutMapping("/user/{id}")
+  fun updateUserId(
+    @PathVariable(value = "id") userId: Long,
+    @Valid @RequestBody newUser: UpdateUserDTO
+  ): ResponseEntity<UserReturnDTO> {
 
-        return this.userService.updateUserId(userId, newUser)
+    return ResponseEntity.ok().body(this.userService.updateUserId(userId, newUser))
+  }
 
-    }
-
-    @DeleteMapping("/user/{id}")
-    fun deleteUserId(@PathVariable(value = "id") userId: Long): ResponseEntity<Void> {
-        return this.userService.deleteUserId(userId)
-    }
+  @DeleteMapping("/user/{id}")
+  fun deleteUserId(@PathVariable(value = "id") userId: Long): ResponseEntity<Void> {
+    return this.userService.deleteUserId(userId)
+  }
 }
