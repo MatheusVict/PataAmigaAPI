@@ -1,54 +1,53 @@
 package com.example.kotlindemo.model
 
-import org.mindrot.jbcrypt.BCrypt
 import org.springframework.lang.Nullable
-import javax.persistence.CascadeType
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
-import javax.persistence.Id
-import javax.persistence.OneToMany
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
+import javax.persistence.*
 import javax.validation.constraints.NotBlank
 
-@Entity
+@Entity(name = "users")
 data class User (
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long = 0,
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    var id: Long = 0,
 
     @get: NotBlank
-    val name: String = "",
+    var name: String = "",
 
-    @get: NotBlank
-    val email: String = "",
+    @Column(unique = true, nullable = false)
+    var email: String = "",
 
     @get: NotBlank
     var password: String = "",
 
     @get: NotBlank
-    val birth: String = "",
+    var birth: String = "",
 
     @get: NotBlank
-    val location: String = "",
+    var location: String = "",
 
     @Column(name = "profile_pic")
-    val profilePic: String = "",
+    var profilePic: String = "",
 
     @get: NotBlank
-    val banner: String = "",
+    var banner: String = "",
 
     @get: NotBlank
-    val phone: String = "",
+    var phone: String = "",
 
     @Nullable
-    val instagram: String?,
+    var instagram: String? = "",
 
     @Nullable
-    val facebook: String?,
+    var facebook: String? = "",
 
     @Nullable
-    val whatsapp: String?,
+    var whatsapp: String? = "",
 
-    @OneToMany(targetEntity = PostPets::class, cascade = [CascadeType.ALL], orphanRemoval = true)
-    val postPets: List<PostPets>
-)
+) {
+    @PrePersist
+    @PreUpdate
+    fun hashPassword() {
+        val encoder = BCryptPasswordEncoder()
+        password = encoder.encode(password)
+    }
+}

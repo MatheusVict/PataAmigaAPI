@@ -1,12 +1,17 @@
 package com.example.kotlindemo.model
 
+import org.springframework.context.annotation.Lazy
 import javax.persistence.*
 
+@Lazy
 @Entity
 data class PostPets (
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0,
+
+    @Column(name = "post_pic")
+    val postPic: String = "",
 
     @Column
     val name: String = "",
@@ -29,8 +34,8 @@ data class PostPets (
     @Column
     val about: String = "",
 
-    @Column(name = "is_adpoted")
-    val isAdpoted: Boolean,
+    @Column(name = "is_adopted")
+    val isAdopted: Boolean,
 
     @Column(name = "is_castrated")
     val isCastrated: Boolean,
@@ -47,8 +52,8 @@ data class PostPets (
     @Column(name = "is_especial_needs")
     val isEspecialNeeds: Boolean,
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = User::class)
     @JoinColumn(name = "user_id", nullable = false)
-    val user: User
+    var user: User
 
 )

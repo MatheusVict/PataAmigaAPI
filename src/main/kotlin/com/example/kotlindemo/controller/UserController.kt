@@ -1,70 +1,52 @@
 package com.example.kotlindemo.controller
 
 
+import com.example.kotlindemo.dtos.ChangePasswordDTO
+import com.example.kotlindemo.dtos.CreateUserDTO
+import com.example.kotlindemo.dtos.UpdateUserDTO
+import com.example.kotlindemo.dtos.UserReturnDTO
 import com.example.kotlindemo.model.User
-import com.example.kotlindemo.repository.UserRepository
-import org.mindrot.jbcrypt.BCrypt
-import org.springframework.http.HttpStatus
+import com.example.kotlindemo.services.UserService
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
-import org.springframework.web.multipart.MultipartFile
 import java.util.*
 import javax.validation.Valid
 
 @RestController
 @RequestMapping("/api")
-class UserController(private val userRepository: UserRepository) {
+class UserController(private val userService: UserService) {
 
-    @GetMapping("/user")
-    fun getAllArticles(): List<User> =
-        userRepository.findAll()
+  @GetMapping("/user")
+  fun getAllUser(): List<UserReturnDTO> =
+    this.userService.getAllUser()
 
-    @PostMapping("/user")
-    fun createNewArticle(@Valid @RequestBody user: User): User {
-        val encodedPassword = BCrypt.hashpw(user.password, BCrypt.gensalt())
-        user.password = encodedPassword
-        return userRepository.save(user)
-    }
+  @PostMapping("/user")
+  fun createNewUser(@Valid @RequestBody user: CreateUserDTO): ResponseEntity<Any> {
+    return this.userService.createNewUser(user.toEntity())
+  }
 
-    @GetMapping("/user/{id}")
-    fun getUserById(@PathVariable(value = "id") userId: Long): ResponseEntity<User> {
-        return userRepository.findById(userId).map { user ->
-            ResponseEntity.ok(user)
-        }.orElse(ResponseEntity.notFound().build())
-    }
+  @GetMapping("/user/{id}")
+  fun getUserById(@PathVariable(value = "id") userId: Long): ResponseEntity<UserReturnDTO> {
+    return ResponseEntity.ok().body(UserReturnDTO(this.userService.getUserById(userId)))
+  }
 
-    @PutMapping("/user/{id}")
-    fun updateUserId(@PathVariable(value = "id") userId: Long,
-                          @Valid @RequestBody newUser: User): ResponseEntity<User> {
 
-        return userRepository.findById(userId).map { existingUser ->
-            val updatedUser: User = existingUser
-                    .copy(
-                        email = newUser.email,
-                        password = newUser.password,
-                        name = newUser.name,
-                        banner = newUser.banner,
-                        birth = newUser.birth,
-                        facebook = newUser.facebook,
-                        instagram = newUser.instagram,
-                        location = newUser.location,
-                        phone = newUser.phone,
-                        profilePic = newUser.profilePic,
-                        whatsapp = newUser.whatsapp
-                    )
+  @PutMapping("/user/{id}")
+  fun updateUserId(
+    @PathVariable(value = "id") userId: Long,
+    @Valid @RequestBody newUser: UpdateUserDTO
+  ): ResponseEntity<UserReturnDTO> {
 
-            ResponseEntity.ok().body(userRepository.save(updatedUser))
-        }.orElse(ResponseEntity.notFound().build())
+    return ResponseEntity.ok().body(this.userService.updateUserId(userId, newUser))
+  }
 
-    }
+  @PatchMapping("/postsPets/change_password/{id}")
+  fun changeUserPassword(@Valid @RequestBody body: ChangePasswordDTO) {
+    ResponseEntity.ok(this.userService.changePassword(body.email, body.newPassword))
+  }
 
-    @DeleteMapping("/user/{id}")
-    fun deleteUserId(@PathVariable(value = "id") userId: Long): ResponseEntity<Void> {
-
-        return userRepository.findById(userId).map { user  ->
-            userRepository.delete(user)
-            ResponseEntity<Void>(HttpStatus.OK)
-        }.orElse(ResponseEntity.notFound().build())
-
-    }
+  @DeleteMapping("/user/{id}")
+  fun deleteUserId(@PathVariable(value = "id") userId: Long): ResponseEntity<Void> {
+    return this.userService.deleteUserId(userId)
+  }
 }

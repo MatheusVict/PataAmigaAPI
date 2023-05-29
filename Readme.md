@@ -418,6 +418,23 @@ Se o usuário escolher não fechar o aplicativo ficará aberto.
     Return:
 </h4>
 
+```ruby
+{
+    "id": Long,
+    "name": String,
+    "email": String,
+    "birth": String,
+    "location": String,
+    "profilePic": String,
+    "banner": String,
+    "phone": String,
+    "instagram": String,
+    "facebook": String,
+    "whatsapp": String,
+    "postPets": []
+}
+```
+
 ```status code:``` 201 ```created```
 
 
@@ -503,21 +520,22 @@ Se o usuário escolher não fechar o aplicativo ficará aberto.
 
 ```ruby
 {
-    "specie": String,
-    "name": String,
-    "race": String,
-    "sex": String,
-    "age": String,
-    "isVaccinated": Boolean,
-    "isCastrated": Boolean,
-    "isPedigree": Boolean,
-    "especialCares": Boolean,
-    "isDewormed": Boolean,
-    "size": String,
-    "weight": String,
-    "About": String,
-    "OwnerId": String,
-    "isAdopted": Boolean
+  "name": String,
+  "race": String,
+  "sex": String,
+  "age": String,
+  "size": String,
+  "weight": String,
+  "about": String,
+  "isAdopted": Boolean,
+  "isCastrated": Boolean,
+  "isVaccinated": Boolean,
+  "isPedigree": Boolean,
+  "isDewormed": Boolean,
+  "isEspecialNeeds": Boolean,
+    "user": {
+        "id": Long
+    }
 }
 ```
 
@@ -543,22 +561,35 @@ Se o usuário escolher não fechar o aplicativo ficará aberto.
 
 ```ruby
 {
-    "id": Int,
-    "specie": String,
-    "name": String,
-    "race": String,
-    "sex": String,
-    "age": String,
-    "isVaccinated": Boolean,
-    "isCastrated": Boolean,
-    "isPedigree": Boolean,
-    "especialCares": Boolean,
-    "isDewormed": Boolean,
-    "size": String,
-    "weight": String,
-    "About": String,
-    "OwnerId": String,
-    "isAdopted": Boolean
+	"id": Long,
+	"name": String,
+	"race": String,
+	"sex": String,
+	"age": String,
+	"size": String,
+	"weight": String,
+	"about": String,
+	"isAdopted": Boolean,
+	"isCastrated": Boolean,
+	"isVaccinated": Boolean,
+	"isPedigree": Boolean,
+	"isDewormed": Boolean,
+	"isEspecialNeeds": Boolean,
+        "user": {
+            "id": Long,
+            "name": String,
+            "email": String,
+            "password": String,
+            "birth": String,
+            "location": String,
+            "profilePic": String,
+            "banner": String,
+            "phone": String,
+            "instagram": String || null,
+            "facebook": String || null,
+            "whatsapp": String || null,
+            "postPets": []
+        }
 }
 ```
 
@@ -581,39 +612,65 @@ Se o usuário escolher não fechar o aplicativo ficará aberto.
 [
     {
         "id": Long,
-        "specie": String,
         "name": String,
         "race": String,
         "sex": String,
         "age": String,
-        "isVaccinated": Boolean,
-        "isCastrated": Boolean,
-        "isPedigree": Boolean,
-        "especialCares": Boolean,
-        "isDewormed": Boolean,
         "size": String,
         "weight": String,
-        "About": String,
-        "OwnerId": String,
-        "isAdopted": Boolean
+        "about": String,
+        "isAdopted": Boolean,
+        "isCastrated": Boolean,
+        "isVaccinated": Boolean,
+        "isPedigree": Boolean,
+        "isDewormed": Boolean,
+        "isEspecialNeeds": Boolean,
+        "user": {
+            "id": Long,
+            "name": String,
+            "email": String,
+            "password": String,
+            "birth": String,
+            "location": String,
+            "profilePic": String,
+            "banner": String,
+            "phone": String,
+            "instagram": String || null,
+            "facebook": String || null,
+            "whatsapp": String || null,
+            "postPets": []
+        }
     },
     {
         "id": Long,
-        "specie": String,
         "name": String,
         "race": String,
         "sex": String,
         "age": String,
-        "isVaccinated": Boolean,
-        "isCastrated": Boolean,
-        "isPedigree": Boolean,
-        "especialCares": Boolean,
-        "isDewormed": Boolean,
         "size": String,
         "weight": String,
-        "About": String,
-        "OwnerId": String,
-        "isAdopted": Boolean
+        "about": String,
+        "isAdopted": Boolean,
+        "isCastrated": Boolean,
+        "isVaccinated": Boolean,
+        "isPedigree": Boolean,
+        "isDewormed": Boolean,
+        "isEspecialNeeds": Boolean,
+        "user": {
+            "id": Long,
+            "name": String,
+            "email": String,
+            "password": String,
+            "birth": String,
+            "location": String,
+            "profilePic": String,
+            "banner": String,
+            "phone": String,
+            "instagram": String || null,
+            "facebook": String || null,
+            "whatsapp": String || null,
+            "postPets": []
+        }
     }
 ]
 ```
@@ -633,21 +690,22 @@ Se o usuário escolher não fechar o aplicativo ficará aberto.
 
 ```ruby
 {
-    "specie": String,
     "name": String,
     "race": String,
     "sex": String,
     "age": String,
-    "isVaccinated": Boolean,
-    "isCastrated": Boolean,
-    "isPedigree": Boolean,
-    "especialCares": Boolean,
-    "isDewormed": Boolean,
     "size": String,
     "weight": String,
-    "About": String,
-    "OwnerId": String,
-    "isAdopted": Boolean
+    "about": String,
+    "isAdopted": Boolean,
+    "isCastrated": Boolean,
+    "isVaccinated": Boolean,
+    "isPedigree": Boolean,
+    "isDewormed": Boolean,
+    "isEspecialNeeds": Boolean,
+    "user": {
+        "id": Long
+    }
 }
 ```
 
