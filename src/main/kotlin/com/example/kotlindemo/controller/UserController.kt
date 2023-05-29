@@ -40,7 +40,7 @@ class UserController(private val userService: UserService) {
     return ResponseEntity.ok().body(this.userService.updateUserId(userId, newUser))
   }
 
-  @PatchMapping("/postsPets/change_password/{id}")
+  @PatchMapping("/user/change_password/{id}")
   fun changeUserPassword(@Valid @RequestBody body: ChangePasswordDTO) {
     ResponseEntity.ok(this.userService.changePassword(body.email, body.newPassword))
   }

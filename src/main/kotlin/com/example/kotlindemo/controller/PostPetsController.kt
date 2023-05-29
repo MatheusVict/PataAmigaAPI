@@ -2,6 +2,7 @@ package com.example.kotlindemo.controller
 
 import com.example.kotlindemo.dtos.CreatePostPetsDTO
 import com.example.kotlindemo.dtos.PostPetsReturnDTO
+import com.example.kotlindemo.dtos.UpdatePostPetsDTO
 import com.example.kotlindemo.model.PostPets
 import com.example.kotlindemo.repository.PostPetsRepository
 import com.example.kotlindemo.services.PostPetsService
@@ -34,9 +35,9 @@ class PostPetsController(private val postPetsService: PostPetsService) {
   @PutMapping("/postsPets/{id}")
   fun updatePostPetsId(
     @PathVariable(value = "id") postPetsId: Long,
-    @Valid @RequestBody newPostPets: PostPets
+    @Valid @RequestBody newPostPets: UpdatePostPetsDTO
   ): ResponseEntity<PostPets> =
-    postPetsService.updatePostPetsId(postPetsId, newPostPets)
+    postPetsService.updatePostPetsId(postPetsId, newPostPets.toEntity())
 
   @DeleteMapping("/postsPets/{id}")
   fun deletePostPetsId(@PathVariable(value = "id") postPetsId: Long): ResponseEntity<Void> =

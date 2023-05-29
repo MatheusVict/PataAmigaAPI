@@ -18,7 +18,7 @@ class PostPetsService(private val postPetsRepository: PostPetsRepository, privat
     this.postPetsRepository.findAll()
 
   fun getPostPetsId(postPetsId: Long): PostPets {
-    return this.postPetsRepository.findById(postPetsId).orElseThrow{
+    return this.postPetsRepository.findById(postPetsId).orElseThrow {
       throw UserNotFoundException("Post $postPetsId Not Found")
     }
   }
@@ -59,7 +59,8 @@ class PostPetsService(private val postPetsRepository: PostPetsRepository, privat
           race = newPostPets.race,
           sex = newPostPets.sex,
           size = newPostPets.size,
-          weight = newPostPets.weight
+          weight = newPostPets.weight,
+          postPic = newPostPets.postPic
         )
       ResponseEntity.ok().body(this.postPetsRepository.save(updatedPostPets))
     }.orElse(ResponseEntity.notFound().build())
