@@ -61,7 +61,6 @@ class PostPetsService(private val postPetsRepository: PostPetsRepository, privat
           size = newPostPets.size,
           weight = newPostPets.weight
         )
-
       ResponseEntity.ok().body(this.postPetsRepository.save(updatedPostPets))
     }.orElse(ResponseEntity.notFound().build())
 
