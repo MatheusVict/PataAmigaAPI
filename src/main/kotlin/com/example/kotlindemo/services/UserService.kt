@@ -1,5 +1,6 @@
 package com.example.kotlindemo.services
 
+import UserNotFoundException
 import com.example.kotlindemo.dtos.UpdateUserDTO
 import com.example.kotlindemo.dtos.UserReturnDTO
 import com.example.kotlindemo.model.User
@@ -34,7 +35,7 @@ class UserService(private val userRepository: UserRepository) {
 
     fun getUserById(userId: Long): User {
         return this.userRepository.findById(userId).orElseThrow {
-            throw NotFoundException("ID $userId Not Found")
+            throw UserNotFoundException("ID $userId Not Found")
         }
     }
 
@@ -45,6 +46,12 @@ class UserService(private val userRepository: UserRepository) {
         val userUpdated: User = this.userRepository.save(userToUpdate)
         return UserReturnDTO(userUpdated)
 
+    }
+
+    fun changePassword(email: String, password: String) {
+        val user = userRepository.findByEmail(email) ?: throw UserNotFoundException("User Not Found")
+        user.password = password
+        userRepository.save(user)
     }
 
     fun deleteUserId(userId: Long): ResponseEntity<Void> {

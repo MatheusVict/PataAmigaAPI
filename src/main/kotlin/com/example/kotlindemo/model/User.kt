@@ -13,7 +13,7 @@ data class User (
     @get: NotBlank
     var name: String = "",
 
-    @get: NotBlank
+    @Column(unique = true, nullable = false)
     var email: String = "",
 
     @get: NotBlank

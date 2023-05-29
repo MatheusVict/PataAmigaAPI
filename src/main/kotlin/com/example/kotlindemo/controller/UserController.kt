@@ -1,6 +1,7 @@
 package com.example.kotlindemo.controller
 
 
+import com.example.kotlindemo.dtos.ChangePasswordDTO
 import com.example.kotlindemo.dtos.CreateUserDTO
 import com.example.kotlindemo.dtos.UpdateUserDTO
 import com.example.kotlindemo.dtos.UserReturnDTO
@@ -37,6 +38,11 @@ class UserController(private val userService: UserService) {
   ): ResponseEntity<UserReturnDTO> {
 
     return ResponseEntity.ok().body(this.userService.updateUserId(userId, newUser))
+  }
+
+  @PatchMapping("/postsPets/change_password/{id}")
+  fun changeUserPassword(@Valid @RequestBody body: ChangePasswordDTO) {
+    ResponseEntity.ok(this.userService.changePassword(body.email, body.newPassword))
   }
 
   @DeleteMapping("/user/{id}")

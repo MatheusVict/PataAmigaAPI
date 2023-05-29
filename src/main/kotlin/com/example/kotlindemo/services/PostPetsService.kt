@@ -1,8 +1,10 @@
 package com.example.kotlindemo.services
 
+import UserNotFoundException
 import com.example.kotlindemo.model.PostPets
 import com.example.kotlindemo.model.User
 import com.example.kotlindemo.repository.PostPetsRepository
+import javassist.NotFoundException
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
@@ -15,38 +17,32 @@ class PostPetsService(private val postPetsRepository: PostPetsRepository, privat
   fun getAllPostPets(): List<PostPets> =
     this.postPetsRepository.findAll()
 
-  fun getPostPetsId(postPetsId: Long): ResponseEntity<PostPets> {
-    return this.postPetsRepository.findById(postPetsId).map { postPets ->
-      ResponseEntity.ok(postPets)
-    }.orElse(ResponseEntity.notFound().build())
+  fun getPostPetsId(postPetsId: Long): PostPets {
+    return this.postPetsRepository.findById(postPetsId).orElseThrow{
+      throw UserNotFoundException("Post $postPetsId Not Found")
+    }
   }
 
-  fun createNewPostPets(postPets: PostPets): ResponseEntity<PostPets> {
+  fun createNewPostPets(postPets: PostPets): PostPets {
     val userId = postPets.user.id
     val user: User? = this.userService.getUserById(userId)
 
-    user?.let {
+    return if (user != null) {
       postPets.user = user
-      return ResponseEntity.ok(this.postPetsRepository.save(postPets))
-    }
-
-    return ResponseEntity.status(HttpStatus.NOT_FOUND).build()
-  }
-
-  fun getPostsByUser(userId: Long): ResponseEntity<List<PostPets>> {
-    val user = User(
-      id = userId
-    )
-    val posts = this.postPetsRepository.findByUser(user)
-    posts?.let {
-      return ResponseEntity.ok(it)
-    } ?: run {
-      return ResponseEntity.notFound().build()
+      this.postPetsRepository.save(postPets)
+    } else {
+      throw IllegalArgumentException("User not found")
     }
   }
 
+  fun getPostsByUser(userId: Long): List<PostPets> {
+    val user = User(id = userId)
+
+    return postPetsRepository.findByUser(user) ?: throw UserNotFoundException("User Not Found")
+  }
 
   fun updatePostPetsId(postPetsId: Long, newPostPets: PostPets): ResponseEntity<PostPets> {
+    this.userService.getUserById(newPostPets.user.id)
 
     return this.postPetsRepository.findById(postPetsId).map { existingPostPets ->
       val updatedPostPets: PostPets = existingPostPets

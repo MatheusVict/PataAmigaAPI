@@ -10,7 +10,7 @@ data class CreateUserDTO(
   val name: String = "",
 
   @field:NotEmpty(message = "this field can not be empty")
-  @field:Email(message = "this field can not be empty")
+  @field:Email(message = "this field can not be a invalid email")
   val email: String = "",
 
   @field:NotEmpty(message = "this field can not be empty")
