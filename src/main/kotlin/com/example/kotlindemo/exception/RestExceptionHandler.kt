@@ -48,8 +48,8 @@ class RestExceptionHandler {
     )
   }
 
-  @ExceptionHandler(IllegalAccessException::class)
-  fun handlerValidException(exception: IllegalAccessException): ResponseEntity<ExceptionDetails> {
+  @ExceptionHandler(IllegalArgumentException::class)
+  fun handlerValidException(exception: IllegalArgumentException): ResponseEntity<ExceptionDetails> {
     return ResponseEntity.status(HttpStatus.BAD_REQUEST)
       .body(
         ExceptionDetails(
