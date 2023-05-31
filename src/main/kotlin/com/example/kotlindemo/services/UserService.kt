@@ -48,6 +48,9 @@ class UserService(private val userRepository: UserRepository) {
 
     }
 
+    fun getUserByEmail(email: String): User? =
+        this.userRepository.findByEmail(email)
+
     fun changePassword(email: String, password: String) {
         val user = userRepository.findByEmail(email) ?: throw UserNotFoundException("User Not Found")
         user.password = password
