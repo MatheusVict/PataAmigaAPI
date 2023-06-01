@@ -35,7 +35,7 @@ data class PostPetsReturnDTO(
 
   val userId: Long,
 
-  val userPic: String,
+  val userPic: String?,
 
   val userName: String,
 

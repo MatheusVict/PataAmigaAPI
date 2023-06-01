@@ -25,11 +25,11 @@ data class User (
     @get: NotBlank
     var location: String = "",
 
-    @Column(name = "profile_pic")
-    var profilePic: String = "",
+    @Column(name = "profile_pic", nullable = true)
+    var profilePic: String? = "",
 
-    @get: NotBlank
-    var banner: String = "",
+    @Column(nullable = true)
+    var banner: String? = "",
 
     @get: NotBlank
     var phone: String = "",

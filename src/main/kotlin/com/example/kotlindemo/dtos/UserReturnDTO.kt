@@ -14,9 +14,9 @@ data class UserReturnDTO(
 
   val location: String,
 
-  val profilePic: String,
+  val profilePic: String?,
 
-  val banner: String,
+  val banner: String?,
 
   val phone: String,
 

@@ -1,6 +1,7 @@
 package com.example.kotlindemo.services
 
 import UserNotFoundException
+import com.example.kotlindemo.dtos.ReturnUsersValidationsException
 import com.example.kotlindemo.dtos.UpdateUserDTO
 import com.example.kotlindemo.dtos.UserReturnDTO
 import com.example.kotlindemo.model.User
@@ -23,10 +24,10 @@ class UserService(private val userRepository: UserRepository) {
         val existingUser = this.userRepository.findByEmail(user.email)
 
         return existingUser?.let {
-           return ResponseEntity.badRequest().body("User email already exists")
+           return ResponseEntity.badRequest().body(ReturnUsersValidationsException("User email already exists"))
         } ?: run {
             if (!isEmailValid(user.email)) {
-                return ResponseEntity.badRequest().body("Invalid email")
+                return ResponseEntity.badRequest().body(ReturnUsersValidationsException("Invalid email"))
             }
             val createdUser = this.userRepository.save(user)
            return ResponseEntity.status(201).body(UserReturnDTO(createdUser))
