@@ -25,10 +25,12 @@ data class User (
     @get: NotBlank
     var location: String = "",
 
-    @Column(name = "profile_pic", nullable = true)
+    @Lob
+    @Column(nullable = true,  name = "profile_pic", length = 20000, columnDefinition = "LONGTEXT")
     var profilePic: String? = "",
 
-    @Column(nullable = true)
+    @Lob
+    @Column(nullable = true, length = 20000, columnDefinition = "LONGTEXT")
     var banner: String? = "",
 
     @get: NotBlank
@@ -45,7 +47,6 @@ data class User (
 
 ) {
     @PrePersist
-    @PreUpdate
     fun hashPassword() {
         val encoder = BCryptPasswordEncoder()
         password = encoder.encode(password)

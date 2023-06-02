@@ -11,11 +11,9 @@ data class UpdateUserDTO(
   @field:NotEmpty(message = "this field can not be empty")
   val location: String = "",
 
-  @field:NotEmpty(message = "this field can not be empty")
-  val profilePic: String = "",
+  val profilePic: String? = "",
 
-  @field:NotEmpty(message = "this field can not be empty")
-  val banner: String = "",
+  val banner: String? = "",
 
   @field:NotEmpty(message = "this field can not be empty")
   val phone: String = "",
