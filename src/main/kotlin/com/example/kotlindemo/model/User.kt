@@ -26,11 +26,11 @@ data class User (
     var location: String = "",
 
     @Lob
-    @Column(nullable = true,  name = "profile_pic", length = 20000, columnDefinition = "LONGTEXT")
+    @Column(nullable = true,  name = "profile_pic", length = 20000, columnDefinition = "BLOB")
     var profilePic: String? = "",
 
     @Lob
-    @Column(nullable = true, length = 20000, columnDefinition = "LONGTEXT")
+    @Column(nullable = true, length = 20000, columnDefinition = "BLOB")
     var banner: String? = "",
 
     @get: NotBlank

@@ -21,6 +21,8 @@ data class PostPetsReturnDTO(
 
   val about: String = "",
 
+  val petLocation: String = "",
+
   val isAdopted: Boolean,
 
   val isCastrated: Boolean,
@@ -60,6 +62,7 @@ data class PostPetsReturnDTO(
     userId = postPets.user.id,
     userPic = postPets.user.profilePic,
     userName = postPets.user.name,
-    userLocation = postPets.user.location
+    userLocation = postPets.user.location,
+    petLocation = postPets.petLocation
   )
 }

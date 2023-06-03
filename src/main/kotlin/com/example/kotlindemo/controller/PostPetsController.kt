@@ -2,9 +2,7 @@ package com.example.kotlindemo.controller
 
 import com.example.kotlindemo.auth.JwtTokenFilter
 import com.example.kotlindemo.auth.JwtTokenProvider
-import com.example.kotlindemo.dtos.CreatePostPetsDTO
-import com.example.kotlindemo.dtos.PostPetsReturnDTO
-import com.example.kotlindemo.dtos.UpdatePostPetsDTO
+import com.example.kotlindemo.dtos.*
 import com.example.kotlindemo.model.PostPets
 import com.example.kotlindemo.services.PostPetsService
 import org.springframework.http.HttpStatus
@@ -20,8 +18,10 @@ class PostPetsController(
   private val jwtTokenProvider: JwtTokenProvider
 ) {
   @GetMapping("/postsPets")
-  fun getAllPostPets(request: HttpServletRequest): ResponseEntity<List<PostPets>> =
-    ResponseEntity.ok().body(postPetsService.getAllPostPets())
+  fun getAllPostPets(request: HttpServletRequest): ResponseEntity<List<PostPetsListReturnDTO>> =
+    ResponseEntity.ok().body(postPetsService.getAllPostPets().map { pets ->
+      PostPetsListReturnDTO(pets)
+    }.toList())
 
   @GetMapping("/postsPets/{id}")
   fun getPostPetsId(@PathVariable(value = "id") postPetsId: Long): ResponseEntity<PostPetsReturnDTO> =

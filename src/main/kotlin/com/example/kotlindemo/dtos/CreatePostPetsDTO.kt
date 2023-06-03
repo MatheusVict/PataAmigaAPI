@@ -20,6 +20,9 @@ data class CreatePostPetsDTO(
   @field:NotEmpty(message = "this field can not be empty")
   val race: String = "",
 
+  @field:NotNull(message = "this field can not be empty")
+  val specie: String = "",
+
   @field:NotEmpty(message = "this field can not be empty")
   val sex: String = "",
 
@@ -34,6 +37,9 @@ data class CreatePostPetsDTO(
 
   @field:NotEmpty(message = "this field can not be empty")
   val about: String = "",
+
+  @field:NotEmpty(message = "this field can not be empty")
+  val petLocation: String = "",
 
   @field:NotNull(message = "this field can not be empty")
   val isAdopted: Boolean,
@@ -53,18 +59,21 @@ data class CreatePostPetsDTO(
   @field:NotNull(message = "this field can not be empty")
   val isEspecialNeeds: Boolean,
 
-  @field:NotNull(message = "this field can not be empty")
+
+
   var userId: Long = 0
 ) {
   fun toEntity(): PostPets = PostPets(
     name = this.name,
     postPic = this.postPic,
     race = this.race,
+    specie = this.specie,
     sex = this.sex,
     age = this.age,
     size = this.size,
     weight = this.weight,
     about = this.about,
+    petLocation = this.petLocation,
     isAdopted = this.isAdopted,
     isCastrated = this.isCastrated,
     isVaccinated = this.isVaccinated,
