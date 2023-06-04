@@ -37,7 +37,9 @@ class PostPetsController(
       val userToken = jwtTokenFilter.getUsernameFromToken(token.toString())
       println(" o User é $userToken")
       ResponseEntity.ok()
-        .body(postPetsService.getPostsByUser(userToken.toLong()))
+        .body(postPetsService.getPostsByUser(userToken.toLong()).map { pets ->
+          PostPetsListReturnDTO(pets)
+        }.toList())
     } else ResponseEntity.status(HttpStatus.UNAUTHORIZED)
       .body("UNAUTHORIZED")
   }
@@ -62,9 +64,22 @@ class PostPetsController(
   @PutMapping("/postsPets/{id}")
   fun updatePostPetsId(
     @PathVariable(value = "id") postPetsId: Long,
-    @Valid @RequestBody newPostPets: UpdatePostPetsDTO
-  ): ResponseEntity<PostPets> =
-    postPetsService.updatePostPetsId(postPetsId, newPostPets.toEntity())
+    @Valid @RequestBody newPostPets: UpdatePostPetsDTO,
+    request: HttpServletRequest
+  ): ResponseEntity<Any> {
+    val jwtTokenFilter = JwtTokenFilter(jwtTokenProvider)
+    val token = jwtTokenFilter.extractToken(request)
+    val isValid = jwtTokenProvider.validateToken(token.toString())
+    println(" token: $token é valido: $isValid")
+    return if (isValid) {
+      val userToken = jwtTokenFilter.getUsernameFromToken (token.toString())
+      println(" token: $token é valido: $isValid")
+      newPostPets.userId = userToken.toLong()
+      ResponseEntity.status(HttpStatus.CREATED)
+        .body(this.postPetsService.updatePostPetsId(postPetsId, newPostPets.toEntity()))
+    } else ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+      .body("UNAUTHORIZED")
+  }
 
   @DeleteMapping("/postsPets/{id}")
   fun deletePostPetsId(@PathVariable(value = "id") postPetsId: Long): ResponseEntity<Void> =

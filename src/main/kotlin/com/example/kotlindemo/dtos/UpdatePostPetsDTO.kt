@@ -49,7 +49,6 @@ data class UpdatePostPetsDTO(
   @field:NotNull(message = "this field can not be empty")
   val isEspecialNeeds: Boolean,
 
-  @field:NotNull(message = "this field can not be empty")
   var userId: Long = 0
 ) {
   fun toEntity(): PostPets = PostPets(

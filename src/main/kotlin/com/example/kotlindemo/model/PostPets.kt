@@ -11,7 +11,7 @@ data class PostPets (
     val id: Long = 0,
 
     @Lob
-    @Column(nullable = true, columnDefinition = "BLOB")
+    @Column(nullable = true, length = 20000, columnDefinition = "BLOB")
     val postPic: String = "",
 
     @Column
