@@ -11,6 +11,8 @@ data class PostPetsReturnDTO(
 
   val race: String = "",
 
+  val specie: String = "",
+
   val sex: String = "",
 
   val age: String = "",
@@ -41,7 +43,6 @@ data class PostPetsReturnDTO(
 
   val userName: String,
 
-  val userLocation: String
 ) {
   constructor(postPets: PostPets): this (
     id = postPets.id,
@@ -60,9 +61,9 @@ data class PostPetsReturnDTO(
     isDewormed = postPets.isDewormed,
     isEspecialNeeds = postPets.isEspecialNeeds,
     userId = postPets.user.id,
+    specie = postPets.specie,
     userPic = postPets.user.profilePic,
     userName = postPets.user.name,
-    userLocation = postPets.user.location,
     petLocation = postPets.petLocation
   )
 }
