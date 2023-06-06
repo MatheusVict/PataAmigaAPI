@@ -10,7 +10,8 @@ data class PostPets (
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0,
 
-    @Column(name = "post_pic")
+    @Lob
+    @Column(nullable = true, length = 20000, columnDefinition = "BLOB")
     val postPic: String = "",
 
     @Column
@@ -18,6 +19,9 @@ data class PostPets (
 
     @Column
     val race: String = "",
+
+    @Column
+    val specie: String = "",
 
     @Column
     val sex: String = "",
@@ -33,6 +37,9 @@ data class PostPets (
 
     @Column
     val about: String = "",
+
+    @Column
+    val petLocation: String = "",
 
     @Column(name = "is_adopted")
     val isAdopted: Boolean,

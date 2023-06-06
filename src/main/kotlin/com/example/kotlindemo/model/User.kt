@@ -25,11 +25,13 @@ data class User (
     @get: NotBlank
     var location: String = "",
 
-    @Column(name = "profile_pic")
-    var profilePic: String = "",
+    @Lob
+    @Column(nullable = true,  name = "profile_pic", length = 20000, columnDefinition = "BLOB")
+    var profilePic: String? = "",
 
-    @get: NotBlank
-    var banner: String = "",
+    @Lob
+    @Column(nullable = true, length = 20000, columnDefinition = "BLOB")
+    var banner: String? = "",
 
     @get: NotBlank
     var phone: String = "",
@@ -45,9 +47,13 @@ data class User (
 
 ) {
     @PrePersist
-    @PreUpdate
     fun hashPassword() {
         val encoder = BCryptPasswordEncoder()
         password = encoder.encode(password)
+    }
+
+    fun comparePassword(password: String): Boolean {
+        val encoder = BCryptPasswordEncoder()
+        return encoder.matches(password, this.password)
     }
 }

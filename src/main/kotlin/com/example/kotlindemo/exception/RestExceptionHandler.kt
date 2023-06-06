@@ -9,6 +9,7 @@ import org.springframework.validation.ObjectError
 import org.springframework.web.bind.MethodArgumentNotValidException
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.RestControllerAdvice
+import java.security.SignatureException
 import java.time.LocalDate
 
 @RestControllerAdvice
@@ -48,8 +49,8 @@ class RestExceptionHandler {
     )
   }
 
-  @ExceptionHandler(IllegalAccessException::class)
-  fun handlerValidException(exception: IllegalAccessException): ResponseEntity<ExceptionDetails> {
+  @ExceptionHandler(IllegalArgumentException::class)
+  fun handlerValidException(exception: IllegalArgumentException): ResponseEntity<ExceptionDetails> {
     return ResponseEntity.status(HttpStatus.BAD_REQUEST)
       .body(
         ExceptionDetails(
@@ -70,6 +71,19 @@ class RestExceptionHandler {
           title = "User not found, set a valid user",
           timestamp = LocalDate.now(),
           status = HttpStatus.NOT_FOUND.value(),
+          exception = exception.javaClass.toString(),
+          details = mutableMapOf(exception.cause.toString() to exception.message)
+        )
+      )
+  }
+  @ExceptionHandler(io.jsonwebtoken.security.SignatureException::class)
+  fun handlerValidException(exception: io.jsonwebtoken.security.SignatureException): ResponseEntity<ExceptionDetails> {
+    return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+      .body(
+        ExceptionDetails(
+          title = "Token invalid, set a valid user",
+          timestamp = LocalDate.now(),
+          status = HttpStatus.UNAUTHORIZED.value(),
           exception = exception.javaClass.toString(),
           details = mutableMapOf(exception.cause.toString() to exception.message)
         )

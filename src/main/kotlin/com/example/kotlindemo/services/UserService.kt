@@ -1,6 +1,7 @@
 package com.example.kotlindemo.services
 
 import UserNotFoundException
+import com.example.kotlindemo.dtos.ReturnUsersValidationsException
 import com.example.kotlindemo.dtos.UpdateUserDTO
 import com.example.kotlindemo.dtos.UserReturnDTO
 import com.example.kotlindemo.model.User
@@ -8,6 +9,7 @@ import com.example.kotlindemo.repository.UserRepository
 import javassist.NotFoundException
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Service
 import java.util.regex.Pattern
 
@@ -23,10 +25,10 @@ class UserService(private val userRepository: UserRepository) {
         val existingUser = this.userRepository.findByEmail(user.email)
 
         return existingUser?.let {
-           return ResponseEntity.badRequest().body("User email already exists")
+           return ResponseEntity.badRequest().body(ReturnUsersValidationsException("User email already exists"))
         } ?: run {
             if (!isEmailValid(user.email)) {
-                return ResponseEntity.badRequest().body("Invalid email")
+                return ResponseEntity.badRequest().body(ReturnUsersValidationsException("Invalid email"))
             }
             val createdUser = this.userRepository.save(user)
            return ResponseEntity.status(201).body(UserReturnDTO(createdUser))
@@ -48,9 +50,13 @@ class UserService(private val userRepository: UserRepository) {
 
     }
 
+    fun getUserByEmail(email: String): User? =
+        this.userRepository.findByEmail(email)
+
     fun changePassword(email: String, password: String) {
         val user = userRepository.findByEmail(email) ?: throw UserNotFoundException("User Not Found")
-        user.password = password
+        val encoder = BCryptPasswordEncoder()
+        user.password = encoder.encode(password)
         userRepository.save(user)
     }
 
