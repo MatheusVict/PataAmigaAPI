@@ -45,34 +45,39 @@ class PostPetsService(private val postPetsRepository: PostPetsRepository, privat
     this.userService.getUserById(newPostPets.user.id)
 
     return this.postPetsRepository.findById(postPetsId).map { existingPostPets ->
-      val updatedPostPets: PostPets = existingPostPets
-        .copy(
-          about = newPostPets.about,
-          age = newPostPets.age,
-          isAdopted = newPostPets.isAdopted,
-          isCastrated = newPostPets.isCastrated,
-          isDewormed = newPostPets.isDewormed,
-          isEspecialNeeds = newPostPets.isEspecialNeeds,
-          isPedigree = newPostPets.isPedigree,
-          isVaccinated = newPostPets.isVaccinated,
-          name = newPostPets.name,
-          race = newPostPets.race,
-          sex = newPostPets.sex,
-          size = newPostPets.size,
-          weight = newPostPets.weight,
-          postPic = newPostPets.postPic
-        )
-      ResponseEntity.ok().body(this.postPetsRepository.save(updatedPostPets))
-    }.orElse(ResponseEntity.notFound().build())
-
+        if (existingPostPets.user.id == newPostPets.user.id) {
+          val updatedPostPets: PostPets = existingPostPets.copy(
+            about = newPostPets.about,
+            age = newPostPets.age,
+            isAdopted = newPostPets.isAdopted,
+            isCastrated = newPostPets.isCastrated,
+            isDewormed = newPostPets.isDewormed,
+            isEspecialNeeds = newPostPets.isEspecialNeeds,
+            isPedigree = newPostPets.isPedigree,
+            isVaccinated = newPostPets.isVaccinated,
+            name = newPostPets.name,
+            race = newPostPets.race,
+            sex = newPostPets.sex,
+            size = newPostPets.size,
+            weight = newPostPets.weight,
+            postPic = newPostPets.postPic
+          )
+          ResponseEntity.ok().body(this.postPetsRepository.save(updatedPostPets))
+        } else {
+          ResponseEntity.status(HttpStatus.UNAUTHORIZED).build()
+        }
+      }.orElse(ResponseEntity.notFound().build())
   }
 
-  fun deletePostPetsId(postPetsId: Long): ResponseEntity<Void> {
 
+  fun deletePostPetsId(postPetsId: Long, userId: Long): ResponseEntity<*> {
     return this.postPetsRepository.findById(postPetsId).map { postPets ->
-      this.postPetsRepository.delete(postPets)
-      ResponseEntity<Void>(HttpStatus.OK)
-    }.orElse(ResponseEntity.notFound().build())
-
+      if (postPets.user.id == userId) {
+        this.postPetsRepository.delete(postPets)
+        ResponseEntity.status(HttpStatus.OK).body("")
+      } else {
+        ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("You can't delete other user's posts")
+      }
+    }.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).body("NOT_FOUND"))
   }
 }

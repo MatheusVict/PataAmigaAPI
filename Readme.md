@@ -1,4 +1,3 @@
-
 <h1><li>Pata Amiga</li></h1>
 <h4> Nosso aplicativo é voltado para adoção de Pets, você pode doar e também adotar um Pet, de maneira rápida e simples.</h4>
 
@@ -6,9 +5,8 @@
 <ol>
     <li><strong>Matheus Victor</strong> - Matrícula: 01515370</li>
     <li> <strong>Everton Figueirôa</strong> - Matrícula: 01177129 </li>
-    <li> <strong>Vinicius Rodrigues Barbosa Das Chagas</strong> - Matrícula: 01519574 </li>
+    <li> <strong>Vinicius Rodrigues</strong> - Matrícula: 01519574 </li>
     <li><strong>Daniel Ferreira</strong> - Matrícula: 01504933</li>
-    <li><strong>Vicente Alfredo Ferreira</strong> - Matrícula: 01540471</li>
 </ol>
 <h1>
     <li>
@@ -21,7 +19,7 @@
 ![image](https://user-images.githubusercontent.com/103688000/231453932-c11a80d1-4bfe-44ed-b179-e25931c2a9c0.png)
 
 </div>
-    
+
 <h1>
     <li>
         UML do mobile
@@ -33,10 +31,10 @@
 ![image](https://user-images.githubusercontent.com/103688000/231453932-c11a80d1-4bfe-44ed-b179-e25931c2a9c0.png)
 
 </div>
-    
+
 <h1><li>Imagens do Projeto - Figma</li></h1>
 
- <h2 align="center">Splash Screen</h2>
+<h2 align="center">Splash Screen</h2>
 
 <div align="center">
     <img height="500em" src="https://user-images.githubusercontent.com/110360268/230796788-f2f86f81-df93-43ad-819a-5c46e2eddc07.png"/>
@@ -64,23 +62,23 @@
 <h2 align="center"> Tela Principal </h2>
 
 <div align="center">
-<img height="500em" src="https://user-images.githubusercontent.com/110360268/230796921-e5cc867f-c303-40c4-adb3-9ae6152d5c34.png"/>
+<img height="500em" src="https://github.com/MatheusVict/PataAmiga/assets/110125979/f91adc4b-6a71-4e94-b7a8-960863bab1c5"/>
 <p>Filtro de animais:</p>
-<img height="400em" src="https://user-images.githubusercontent.com/110360268/230796975-239850e8-f55c-4b30-af8d-f115c44a8327.png"/>
+<img height="400em" src="https://github.com/MatheusVict/PataAmiga/assets/110125979/2e38bb26-9a9f-42ee-b407-ce98b5410e5f"/>
 </div>
 
 <h2 align="center"> Tela do Perfil de Pet </h2>
 
 <div align="center">
-<img height="1000em" src="https://user-images.githubusercontent.com/110360268/230796985-a42275ac-a115-4c96-8812-93425a31ead6.png"/>
+<img height="1000em" src="https://github.com/MatheusVict/PataAmiga/assets/110125979/c403ccf3-8c2b-40d6-aaf7-32535e0a8c1d"/>
 <p>Como adotar um pet:</p>
-<img height="250em" src="https://user-images.githubusercontent.com/110125979/231047402-2cf28127-ef89-4cd1-b39c-7f49f48b793e.png"/>
+<img height="250em" src="https://github.com/MatheusVict/PataAmiga/assets/110125979/35dd8920-e6f6-429b-a224-3568994e9110"/>
 </div>
 
 <h2 align="center"> Tela para adicionar um Pet para adoção </h2>
 
 <div align="center">
-<img height="1000em" src="https://user-images.githubusercontent.com/110360268/230796980-c09d1af2-dddf-4ecc-8f5a-19319cfe402c.png"/>
+<img height="1000em" src="https://github.com/MatheusVict/PataAmiga/assets/110125979/a0d05950-7371-4774-9d98-e911bceeabd8"/>
 <p>Mensagem de confirmação:</p>
 <img height="70em" src="https://user-images.githubusercontent.com/110125979/231047998-5649955b-9f04-4222-9924-89f74784c2eb.png"/>
 </div>
@@ -88,22 +86,15 @@
 <h2 align="center"> Tela de Perfil do Usuário </h2>
 
 <div align="center">
-<img height="500em" src="https://user-images.githubusercontent.com/124841543/232339435-a9c66294-f776-4c96-9ba4-be770c56b124.png"/>
-<img height="500em" src="https://user-images.githubusercontent.com/124841543/232339476-f61ed082-46bb-4a6c-a21b-830ace26ada9.png"/>
+<img height="500em" src="https://github.com/MatheusVict/PataAmiga/assets/110125979/37da1e0c-2cd6-4915-9153-18e7c4457574"/>
 <p>Confirmação de Sign Out:</p>
-<img height="100em" src="https://user-images.githubusercontent.com/110125979/231048603-3699ed47-19ec-42ef-87b0-28002f199c5b.png"/>
-</div>
-
-<h2 align="center"> Perfil de outro usuário </h2>
-
-<div align="center">
-<img height="500em" src="https://user-images.githubusercontent.com/124841543/231034804-1a6fdb96-09dd-42f7-802f-991fe3bee89c.png"/>
+<img height="100em" src="https://github.com/MatheusVict/PataAmiga/assets/110125979/0f1aa45e-758a-47ae-b5f6-6e7f0b2a93d5"/>
 </div>
 
 <h2 align="center"> Tela para edição do Perfil do Usuário </h2>
 
 <div align="center">
-<img height="500em" src="https://user-images.githubusercontent.com/110360268/230796990-dd6e2f87-6c51-4e6d-a008-0cde96589754.png"/>
+<img height="500em" src="https://github.com/MatheusVict/PataAmiga/assets/110125979/ac06f8d9-38fe-4523-9f8d-f494ad0a02b3"/>
 </div>
 
 <h1>
@@ -154,44 +145,7 @@ Se o usuário cometer algum erro durante o preenchimento do formulário, o siste
 indicando qual campo contém informações incorretas. O usuário pode então corrigir as informações incorretas antes de
 submeter o formulário novamente.
 
-<h3> Caso de Uso 3: Favoritar animal </h3>
-
-<h4>Descrição:</h4>
-Um usuário deve ser capaz de favoritar um animal do feed no sistema, adicionando em sua lista de favoritos.
-
-<h4>Fluxo Principal:</h4>
-<ul>
-    <li>O usuário acessa o sistema e seleciona o coração no post do animal.</li>
-    <li>O sistema troca a cor do coração de branco para vermelho e adiciona o animal na lista do usuário.</li>
-    <li>O usuário deve ter acesso a abas de favoritos onde vai está listado todos os animais já favoritos.</li>
-    <li>O usuário deve ter acesso a desfavoritar se o mesmo desejar, assim retirando o animal da aba favoritos.</li>
-</ul>
-<h4>Fluxo Alternativo:</h4>
-Se o usuário cometer um erro e desfavoritar um animal errado, o sistema deve aparecer uma mensagem de confirmação da
-ação e permitir o usuário escolher se sim ou não.
-
-<h3> Caso de Uso 4: Filtrar animais do feed </h3>
-
-<h4>Descrição:</h4>
-Um usuário pode filtrar todos os animais disponíveis para ele, filtrando por espécie, raça, idade, sexo e
-peso(tamanho). O filtro deve fornecer informações relevantes, como todos os animais disponíveis e que atendam o critério
-escolhido. O sistema deve permitir ordenar os animais filtrados por mais recentes e mais próximos.
-
-<h4>Fluxo Principal:</h4>
-<ul>
-    <li>O usuário acessa o sistema e seleciona a funcionalidade filtro.</li>
-    <li>O sistema exibe um formulário, permitindo que o usuário filtre por espécie, raça, idade, sexo e peso(tamanho).
-    </li>
-    <li>O sistema apresenta os animais que correspondem aos critérios escolhidos no filtro.</li>
-    <li>O usuário pode clicar em um animal para visualizar mais detalhes, como nome, espécie, raça, sexo, idade, peso,
-        se é castrado, se é vacinado, se é vermifugado, sé precisa de cuidado especiais e descrição.</li>
-</ul>
-<h4>Fluxo Alternativo:</h4>
-Se o sistema não encontrar nenhum animal correspondente aos filtros utilizados, deve exibir uma mensagem de
-informação. Se houver um grande número de animais, o sistema deve exibir os animais em modo cascata com limite por página de 20
-animais.
-
-<h3> Caso de Uso 5: Listar animais no feed </h3>
+<h3> Caso de Uso 3: Listar animais no feed </h3>
 
 <h4>Descrição:</h4>
 Após estar autenticado e entrar no aplicativo, o usuário verá uma lista com todos os PETS.
@@ -206,7 +160,7 @@ Após estar autenticado e entrar no aplicativo, o usuário verá uma lista com t
 Se o usuário não tiver conexão com a internet ou, houver alguma falha no servidor, o sistema deve notificá-lo sobre
 o ocorrido, igualmente caso não haja nenhum animal disponível para adoção.
 
-<h3> Caso de Uso 6: Exibir cada Post de animal(individualmente) </h3>
+<h3> Caso de Uso 4: Exibir cada Post de animal(individualmente) </h3>
 
 <h4>Descrição:</h4>
 O usuário pode acessar as informações completas de um animal, ao acessar o post.
@@ -220,7 +174,7 @@ O usuário pode acessar as informações completas de um animal, ao acessar o po
 <h4>Fluxo Alternativo:</h4>
 Se o usuário desistir da adoção ele pode cancelar a ação clicando no botão de sair.
 
-<h3> Caso de Uso 7: Adoção do pet </h3>
+<h3> Caso de Uso 5: Adoção do pet </h3>
 
 <h4>Descrição:</h4>
 Um usuário pode realizar a adoção do pet, com isso vai clicar no botão adotar que tem no detalhamento do
@@ -238,7 +192,7 @@ animal
 Se o usuário não conseguir acessar o botão adotar o sistema deve apresentar uma mensagem de erro com o motivo. Ex.:
 Quando não tiver canal disponibilizado pelo doador.
 
-<h3> Caso de uso 8: O post pode ser atualizado pelo dono </h3>
+<h3> Caso de uso 6: O post pode ser atualizado pelo dono </h3>
 
 <h4>Descrição:</h4>
 Um usuário pode realizar a atualização de informações do post
@@ -255,7 +209,7 @@ Um usuário pode realizar a atualização de informações do post
 Se o usuário colocar informações inválidas no post o sistema deve informá-lo o que está errado.
 
 
-<h3> Caso de Uso 9: O post pode ser apagado pelo dono </h3>
+<h3> Caso de Uso 7: O post pode ser apagado pelo dono </h3>
 
 <h4>Descrição: </h4>
 Um usuário pode deletar o post de sua preferência.
@@ -270,7 +224,7 @@ Um usuário pode deletar o post de sua preferência.
 <h4>Fluxo Alternativo:</h4>
 Se o usuário não quiser mais deletar o post ele pode clicar em cancelar na caixa de mensagem de confirmação.
 
-<h3> Caso de Uso 10: O usuário pode editar o perfil </h3>
+<h3> Caso de Uso 8: O usuário pode editar o perfil </h3>
 
 <h4>Descrição: </h4>
 Um usuário pode acessar seu perfil e editar suas informações
@@ -286,7 +240,7 @@ Um usuário pode acessar seu perfil e editar suas informações
 Se o usuário preencher algum campo indevidamente o sistema deve exibir uma mensagem informando onde está o erro.
 
 
-<h3> Caso de Uso 11: O usuário pode ver seu perfil </h3>
+<h3> Caso de Uso 9: O usuário pode ver seu perfil </h3>
 
 <h4>Descrição:</h4>
 Um usuário pode acessar seu perfil e ver suas informações visíveis.
@@ -301,7 +255,7 @@ Um usuário pode acessar seu perfil e ver suas informações visíveis.
 Se houver algum erro ao carregar as informações do banco o sistema deve informá-lo sobre o problema.
 
 
-<h3> Caso de Uso 12: O usuário ver sua lista de posts </h3>
+<h3> Caso de Uso 10: O usuário ver sua lista de posts </h3>
 
 <h4>Descrição:</h4>
 Um usuário pode acessar seu perfil e ver todos os seus posts
@@ -318,7 +272,7 @@ Se o usuário não possuir nenhum post deve ser exibido uma mensagem de que não
 para a página de criação de posts.
 
 
-<h3> Caso de Uso 13: O usuário sair do app </h3>
+<h3> Caso de Uso 11: O usuário sair do app </h3>
 
 <h4>Descrição:</h4>
 Um usuário pode fechar o aplicativo pelo próprio aplicativo
@@ -418,23 +372,6 @@ Se o usuário escolher não fechar o aplicativo ficará aberto.
     Return:
 </h4>
 
-```ruby
-{
-    "id": Long,
-    "name": String,
-    "email": String,
-    "birth": String,
-    "location": String,
-    "profilePic": String,
-    "banner": String,
-    "phone": String,
-    "instagram": String,
-    "facebook": String,
-    "whatsapp": String,
-    "postPets": []
-}
-```
-
 ```status code:``` 201 ```created```
 
 
@@ -520,22 +457,21 @@ Se o usuário escolher não fechar o aplicativo ficará aberto.
 
 ```ruby
 {
-  "name": String,
-  "race": String,
-  "sex": String,
-  "age": String,
-  "size": String,
-  "weight": String,
-  "about": String,
-  "isAdopted": Boolean,
-  "isCastrated": Boolean,
-  "isVaccinated": Boolean,
-  "isPedigree": Boolean,
-  "isDewormed": Boolean,
-  "isEspecialNeeds": Boolean,
-    "user": {
-        "id": Long
-    }
+    "specie": String,
+    "name": String,
+    "race": String,
+    "sex": String,
+    "age": String,
+    "isVaccinated": Boolean,
+    "isCastrated": Boolean,
+    "isPedigree": Boolean,
+    "especialCares": Boolean,
+    "isDewormed": Boolean,
+    "size": String,
+    "weight": String,
+    "About": String,
+    "OwnerId": String,
+    "isAdopted": Boolean
 }
 ```
 
@@ -561,35 +497,22 @@ Se o usuário escolher não fechar o aplicativo ficará aberto.
 
 ```ruby
 {
-	"id": Long,
-	"name": String,
-	"race": String,
-	"sex": String,
-	"age": String,
-	"size": String,
-	"weight": String,
-	"about": String,
-	"isAdopted": Boolean,
-	"isCastrated": Boolean,
-	"isVaccinated": Boolean,
-	"isPedigree": Boolean,
-	"isDewormed": Boolean,
-	"isEspecialNeeds": Boolean,
-        "user": {
-            "id": Long,
-            "name": String,
-            "email": String,
-            "password": String,
-            "birth": String,
-            "location": String,
-            "profilePic": String,
-            "banner": String,
-            "phone": String,
-            "instagram": String || null,
-            "facebook": String || null,
-            "whatsapp": String || null,
-            "postPets": []
-        }
+    "id": Int,
+    "specie": String,
+    "name": String,
+    "race": String,
+    "sex": String,
+    "age": String,
+    "isVaccinated": Boolean,
+    "isCastrated": Boolean,
+    "isPedigree": Boolean,
+    "especialCares": Boolean,
+    "isDewormed": Boolean,
+    "size": String,
+    "weight": String,
+    "About": String,
+    "OwnerId": String,
+    "isAdopted": Boolean
 }
 ```
 
@@ -612,65 +535,39 @@ Se o usuário escolher não fechar o aplicativo ficará aberto.
 [
     {
         "id": Long,
+        "specie": String,
         "name": String,
         "race": String,
         "sex": String,
         "age": String,
+        "isVaccinated": Boolean,
+        "isCastrated": Boolean,
+        "isPedigree": Boolean,
+        "especialCares": Boolean,
+        "isDewormed": Boolean,
         "size": String,
         "weight": String,
-        "about": String,
-        "isAdopted": Boolean,
-        "isCastrated": Boolean,
-        "isVaccinated": Boolean,
-        "isPedigree": Boolean,
-        "isDewormed": Boolean,
-        "isEspecialNeeds": Boolean,
-        "user": {
-            "id": Long,
-            "name": String,
-            "email": String,
-            "password": String,
-            "birth": String,
-            "location": String,
-            "profilePic": String,
-            "banner": String,
-            "phone": String,
-            "instagram": String || null,
-            "facebook": String || null,
-            "whatsapp": String || null,
-            "postPets": []
-        }
+        "About": String,
+        "OwnerId": String,
+        "isAdopted": Boolean
     },
     {
         "id": Long,
+        "specie": String,
         "name": String,
         "race": String,
         "sex": String,
         "age": String,
+        "isVaccinated": Boolean,
+        "isCastrated": Boolean,
+        "isPedigree": Boolean,
+        "especialCares": Boolean,
+        "isDewormed": Boolean,
         "size": String,
         "weight": String,
-        "about": String,
-        "isAdopted": Boolean,
-        "isCastrated": Boolean,
-        "isVaccinated": Boolean,
-        "isPedigree": Boolean,
-        "isDewormed": Boolean,
-        "isEspecialNeeds": Boolean,
-        "user": {
-            "id": Long,
-            "name": String,
-            "email": String,
-            "password": String,
-            "birth": String,
-            "location": String,
-            "profilePic": String,
-            "banner": String,
-            "phone": String,
-            "instagram": String || null,
-            "facebook": String || null,
-            "whatsapp": String || null,
-            "postPets": []
-        }
+        "About": String,
+        "OwnerId": String,
+        "isAdopted": Boolean
     }
 ]
 ```
@@ -690,22 +587,21 @@ Se o usuário escolher não fechar o aplicativo ficará aberto.
 
 ```ruby
 {
+    "specie": String,
     "name": String,
     "race": String,
     "sex": String,
     "age": String,
+    "isVaccinated": Boolean,
+    "isCastrated": Boolean,
+    "isPedigree": Boolean,
+    "especialCares": Boolean,
+    "isDewormed": Boolean,
     "size": String,
     "weight": String,
-    "about": String,
-    "isAdopted": Boolean,
-    "isCastrated": Boolean,
-    "isVaccinated": Boolean,
-    "isPedigree": Boolean,
-    "isDewormed": Boolean,
-    "isEspecialNeeds": Boolean,
-    "user": {
-        "id": Long
-    }
+    "About": String,
+    "OwnerId": String,
+    "isAdopted": Boolean
 }
 ```
 

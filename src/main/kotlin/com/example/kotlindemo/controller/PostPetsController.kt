@@ -18,14 +18,28 @@ class PostPetsController(
   private val jwtTokenProvider: JwtTokenProvider
 ) {
   @GetMapping("/postsPets")
-  fun getAllPostPets(request: HttpServletRequest): ResponseEntity<List<PostPetsListReturnDTO>> =
-    ResponseEntity.ok().body(postPetsService.getAllPostPets().map { pets ->
-      PostPetsListReturnDTO(pets)
-    }.toList())
+  fun getAllPostPets(request: HttpServletRequest): ResponseEntity<Any> {
+    val jwtTokenFilter = JwtTokenFilter(jwtTokenProvider)
+    val token = jwtTokenFilter.extractToken(request)
+    val isValid = jwtTokenProvider.validateToken(token.toString())
+    println(" token: $token é valido: $isValid")
+    return if (isValid) {
+      ResponseEntity.ok().body(postPetsService.getAllPostPets().map { pets ->
+        PostPetsListReturnDTO(pets)
+      }.toList())
+    } else ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("UNAUTHORIZED")
+  }
 
   @GetMapping("/postsPets/{id}")
-  fun getPostPetsId(@PathVariable(value = "id") postPetsId: Long): ResponseEntity<PostPetsReturnDTO> =
-    ResponseEntity.ok().body(PostPetsReturnDTO(postPetsService.getPostPetsId(postPetsId)))
+  fun getPostPetsId(@PathVariable(value = "id") postPetsId: Long, request: HttpServletRequest): ResponseEntity<Any> {
+    val jwtTokenFilter = JwtTokenFilter(jwtTokenProvider)
+    val token = jwtTokenFilter.extractToken(request)
+    val isValid = jwtTokenProvider.validateToken(token.toString())
+    println(" token: $token é valido: $isValid")
+    return if (isValid) {
+      ResponseEntity.ok().body(PostPetsReturnDTO(postPetsService.getPostPetsId(postPetsId)))
+    } else ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("UNAUTHORIZED")
+  }
 
   @GetMapping("/postsPets/users")
   fun getPostPetsForUserId(request: HttpServletRequest): ResponseEntity<Any> {
@@ -45,13 +59,16 @@ class PostPetsController(
   }
 
   @PostMapping("/postsPets")
-  fun createNewPostPets(@Valid @RequestBody createPostPetsDTO: CreatePostPetsDTO, request: HttpServletRequest): ResponseEntity<Any> {
+  fun createNewPostPets(
+    @Valid @RequestBody createPostPetsDTO: CreatePostPetsDTO,
+    request: HttpServletRequest
+  ): ResponseEntity<Any> {
     val jwtTokenFilter = JwtTokenFilter(jwtTokenProvider)
     val token = jwtTokenFilter.extractToken(request)
     val isValid = jwtTokenProvider.validateToken(token.toString())
     println(" token: $token é valido: $isValid")
     return if (isValid) {
-      val userToken = jwtTokenFilter . getUsernameFromToken (token.toString())
+      val userToken = jwtTokenFilter.getUsernameFromToken(token.toString())
       println(" token: $token é valido: $isValid")
       createPostPetsDTO.userId = userToken.toLong()
       ResponseEntity.status(HttpStatus.CREATED)
@@ -72,17 +89,43 @@ class PostPetsController(
     val isValid = jwtTokenProvider.validateToken(token.toString())
     println(" token: $token é valido: $isValid")
     return if (isValid) {
-      val userToken = jwtTokenFilter.getUsernameFromToken (token.toString())
+      val userToken = jwtTokenFilter.getUsernameFromToken(token.toString())
       println(" token: $token é valido: $isValid")
       newPostPets.userId = userToken.toLong()
-      ResponseEntity.status(HttpStatus.CREATED)
-        .body(this.postPetsService.updatePostPetsId(postPetsId, newPostPets.toEntity()))
-    } else ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-      .body("UNAUTHORIZED")
+      val response = this.postPetsService.updatePostPetsId(postPetsId, newPostPets.toEntity())
+      if (response.statusCode == HttpStatus.OK) {
+        ResponseEntity.ok(response.body)
+      } else {
+        ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response.body)
+      }
+    } else {
+      ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("UNAUTHORIZED")
+    }
   }
 
+
   @DeleteMapping("/postsPets/{id}")
-  fun deletePostPetsId(@PathVariable(value = "id") postPetsId: Long): ResponseEntity<Void> =
-    postPetsService.deletePostPetsId(postPetsId)
+  fun deletePostPetsId(
+    @PathVariable(value = "id") postPetsId: Long,
+    request: HttpServletRequest
+  ): ResponseEntity<Any> {
+    val jwtTokenFilter = JwtTokenFilter(jwtTokenProvider)
+    val token = jwtTokenFilter.extractToken(request)
+    val isValid = jwtTokenProvider.validateToken(token.toString())
+    println(" token: $token é valido: $isValid")
+
+    return if (isValid) {
+      val userToken = jwtTokenFilter.getUsernameFromToken(token.toString())
+      val result = postPetsService.deletePostPetsId(postPetsId, userToken.toLong())
+      if (result?.statusCode == HttpStatus.NO_CONTENT) {
+        ResponseEntity.status(HttpStatus.NO_CONTENT).build()
+      } else {
+        ResponseEntity.status(result?.statusCode!!).body(result.body)
+      }
+    } else {
+      ResponseEntity.status(HttpStatus.UNAUTHORIZED).build()
+    }
+  }
+
 
 }

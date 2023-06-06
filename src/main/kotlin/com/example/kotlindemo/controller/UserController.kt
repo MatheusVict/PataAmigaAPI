@@ -62,15 +62,9 @@ class UserController(private val userService: UserService, private val jwtTokenP
 
   @PatchMapping("/user/change_password")
   fun changeUserPassword(@Valid @RequestBody body: ChangePasswordDTO, request: HttpServletRequest): ResponseEntity<Any> {
-    val jwtTokenFilter = JwtTokenFilter(jwtTokenProvider)
-    val token = jwtTokenFilter.extractToken(request)
-    val isValid = jwtTokenProvider.validateToken(token.toString())
-    println(" token: $token é valido: $isValid")
-    return if (isValid) {
-      val userToken = jwtTokenFilter.getUsernameFromToken(token.toString())
-      println(" token: $token é valido: $isValid")
-      ResponseEntity.ok(this.userService.changePassword(body.email, body.newPassword))
-    } else ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("UNAUTHORIZED")
+
+    return ResponseEntity.ok(this.userService.changePassword(body.email, body.newPassword))
+
   }
 
   @DeleteMapping("/user")
