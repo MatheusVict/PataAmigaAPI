@@ -722,7 +722,7 @@ Se o usuário escolher não fechar o aplicativo ficará aberto.
 ```
 
 <h3>deletePost</h3>
-<h4>Método responsável por apagar um post no banco</h4>
+<h4>Método responsável por apagar um post no banco(Você só pode deletar os seus posts)</h4>
 
 ```delete```
 
