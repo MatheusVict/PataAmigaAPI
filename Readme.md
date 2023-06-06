@@ -294,7 +294,7 @@ Se o usuário escolher não fechar o aplicativo ficará aberto.
 </h1>
 <h2>EndPoints da API</h2>
 
-**OBS:** Todas as rotas possuiem o prefixo ```/api```
+**OBS:** Todas as rotas possuiem o prefixo ```/api```(exceto o login). E somente a rota de login, criação de usuário e alteração de senha não precisam de token
 
 <h3><strong>User's EndPoint</strong></h3>
 
@@ -303,7 +303,7 @@ Se o usuário escolher não fechar o aplicativo ficará aberto.
 ```Post```
 
 
-<h4>/user/login</h4>
+<h4>auth/user/login</h4>
 <strong>Body:</strong>
 
 ```ruby
@@ -321,11 +321,11 @@ Se o usuário escolher não fechar o aplicativo ficará aberto.
 
 ```ruby
 {
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ"
+    "message": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ"
 }
 ```
 
-<h3>CreateOneUser</h3>
+<h3>Create one user</h3>
 <h4>Método responsável por criar um usuário no banco</h4>
 
 ```Post```
@@ -335,37 +335,37 @@ Se o usuário escolher não fechar o aplicativo ficará aberto.
 <strong>Body:</strong>
 
 ```ruby
-{
-    "email": String,
-    "name": String,
-    "password": String,
-    "birth": String,
-    "location": String,
-    "profileAvatarUrl": String,
-    "banner": String,
+{	
+    "name": Sting,	
+    "email": String,	
+    "password": String,	
+    "birth": String,	
+    "location": String,	
+    "profilePic": String,	
+    "banner": String,	
     "phone": String,
+    "whatsapp": String,
     "instagram": String,
-    "facebook": String,
-    "whatsapp": String
-}
+    "facebook": String
+}   
 ```
 
-**Os campos instagram, facebook e whatsapp são opcionais. Ex.:**
+**Os campos profilePic, banner, instagram, facebook e whatsapp são opcionais. Ex.:**
 
 ```ruby
-{
-    "email": String,
-    "name": String,
-    "password": String,
-    "birth": String,
-    "location": String,
-    "profileAvatarUrl": String,
-    "banner": String,
+{	
+    "name": Sting,	
+    "email": String,	
+    "password": String,	
+    "birth": String,	
+    "location": String,	
+    "profilePic": null,	
+    "banner": null,	
     "phone": String,
+    "whatsapp": null,
     "instagram": null,
-    "facebook": null,
-    "whatsapp": null
-}
+    "facebook": null
+}   
 ```
 
 <h4>
@@ -374,67 +374,107 @@ Se o usuário escolher não fechar o aplicativo ficará aberto.
 
 ```status code:``` 201 ```created```
 
+```ruby
+{	
+    "id": Long,
+    "name": String,
+    "email": String,
+    "birth": String,
+    "location": String,
+    "profilePic": String,
+    "banner": String,
+    "phone": String,
+    "instagram": String,
+    "facebook": String,
+    "whatsapp": String
+}   
+```
 
-<h3>getOneUser</h3>
-<h4>Método responsável por listar um usuário no banco com base no ID</h4>
+<h3>get one user</h3>
+<h4>Método responsável por listar um usuário no banco com base no token passado</h4>
 
 ```get```
 
 
-<h4>/user/{idUser}</h4>
-
+<h4>/user/byself</h4>
 
 <h4>
     Return:
 </h4>
 
+```status code:``` 200 ```OK```
 
 ```ruby
 {
-    "id": Int,
-    "email": String,
+    "id": Long,
     "name": String,
-    "password": String,
+    "email": String,
     "birth": String,
     "location": String,
-    "profileAvatarUrl": String,
+    "profilePic": String,
     "banner": String,
     "phone": String,
     "instagram": String,
     "facebook": String,
-    "whatsapp": String,
-    "postsPets": [],
-    "likedPets": []
+    "whatsapp": String
 }
 ```
 
+<h3>update user</h3>
+<h4>Método responsável por atualizar um usuário no banco com base no token</h4>
+
+```put```
+
+<h4>/user</h4>
+<strong>Body:</strong>
+
+
+```ruby
+{
+    "name": String,
+    "location": String,
+    "phone": String,
+    "instagram": String,
+    "facebook": String,
+    "whatsapp": String
+}
+```
+
+<h4>
+    Return:
+</h4>
+
 ```status code:``` 200 ```OK```
 
+```ruby
+{
+    "id": Long,
+    "name": String,
+    "email": String,
+    "birth": String,
+    "location": String,
+    "profilePic": String,
+    "banner": String,
+    "phone": String,
+    "instagram": String,
+    "facebook": String,
+    "whatsapp": String
+}
+```
 
-<h3>updateUser</h3>
-<h4>Método responsável por atualizar um usuário no banco</h4>
+<h3>update password</h3>
+<h4>Método responsável por atualizar a senha de um usuário no banco com base no token</h4>
 
 ```patch```
 
-<h4>/user/{idUser}</h4>
+<h4>/user/change_password</h4>
 <strong>Body:</strong>
 
 
 ```ruby
 {
     "email": String,
-    "name": String,
-    "password": String,
-    "birth": String,
-    "location": String,
-    "profileAvatarUrl": String,
-    "banner": String,
-    "phone": String,
-    "instagram": String,
-    "facebook": String,
-    "whatsapp": String,
-    "postsPets": [],
-    "likedPets": []
+    "newPassword": String
 }
 ```
 
@@ -444,10 +484,24 @@ Se o usuário escolher não fechar o aplicativo ficará aberto.
 
 ```status code:``` 200 ```OK```
 
+<h3>delete user</h3>
+<h4>Método responsável por um usuário no banco com base no token</h4>
+
+```delete```
+
+<h4>/user
+
+<h4>
+    Return:
+</h4>
+
+```status code:``` 200 ```OK```
+
+
 
 <h2><strong>postPet's EndPoint</strong></h2>
 
-<h3>createdPost</h3>
+<h3>create post</h3>
 <h4>Método responsável por criar um post de adoção</h4>
 
 ```post```
@@ -457,21 +511,22 @@ Se o usuário escolher não fechar o aplicativo ficará aberto.
 
 ```ruby
 {
-    "specie": String,
     "name": String,
+    "postPic": String,
     "race": String,
+    "specie": String,
     "sex": String,
     "age": String,
-    "isVaccinated": Boolean,
-    "isCastrated": Boolean,
-    "isPedigree": Boolean,
-    "especialCares": Boolean,
-    "isDewormed": Boolean,
     "size": String,
     "weight": String,
-    "About": String,
-    "OwnerId": String,
-    "isAdopted": Boolean
+    "about": String,
+    "petLocation": String,
+    "isAdopted": Boolean,
+    "isCastrated": Boolean,
+    "isVaccinated": Boolean,
+    "isPedigree": Boolean,
+    "isDewormed": Boolean,
+    "isEspecialNeeds": Boolean
 }
 ```
 
@@ -481,8 +536,34 @@ Se o usuário escolher não fechar o aplicativo ficará aberto.
 
 ```status code:``` 201 ```created```
 
+```ruby
+{
+  "id": Long,
+  "postPic": "String",
+  "name": "String",
+  "race": "String",
+  "specie": "String",
+  "sex": "String",
+  "age": "String",
+  "size": "String",
+  "weight": "String",
+  "about": "String",
+  "petLocation": "String",
+  "isAdopted": Boolean,
+  "isCastrated": Boolean,
+  "isVaccinated": Boolean,
+  "isPedigree": Boolean,
+  "isDewormed": Boolean,
+  "isEspecialNeeds": Boolean,
+  "userId": Long,
+  "userPic": "String",
+  "userName": "String"
+}
 
-<h3>getOnePostForId</h3>
+```
+
+
+<h3>get one post for id</h3>
 <h4>Método responsável por listar um post com base no seu ID</h4>
 
 ```get```
@@ -494,32 +575,36 @@ Se o usuário escolher não fechar o aplicativo ficará aberto.
     Return:
 </h4>
 
+```status code:``` 200 ```ok```
 
 ```ruby
 {
-    "id": Int,
-    "specie": String,
-    "name": String,
-    "race": String,
-    "sex": String,
-    "age": String,
-    "isVaccinated": Boolean,
-    "isCastrated": Boolean,
-    "isPedigree": Boolean,
-    "especialCares": Boolean,
-    "isDewormed": Boolean,
-    "size": String,
-    "weight": String,
-    "About": String,
-    "OwnerId": String,
-    "isAdopted": Boolean
+  "id": Long,
+  "postPic": "String",
+  "name": "String",
+  "race": "String",
+  "specie": "String",
+  "sex": "String",
+  "age": "String",
+  "size": "String",
+  "weight": "String",
+  "about": "String",
+  "petLocation": "String",
+  "isAdopted": Boolean,
+  "isCastrated": Boolean,
+  "isVaccinated": Boolean,
+  "isPedigree": Boolean,
+  "isDewormed": Boolean,
+  "isEspecialNeeds": Boolean,
+  "userId": Long,
+  "userPic": "String",
+  "userName": "String"
 }
+
 ```
 
-```status code:``` 200 ```ok```
 
-
-<h3>getAllPosts</h3>
+<h3>get all posts</h3>
 <h4>Método responsável por listar todos os posts</h4>
 
 ```get```
@@ -530,56 +615,48 @@ Se o usuário escolher não fechar o aplicativo ficará aberto.
     Return:
 </h4>
 
+```status code:``` 200 ```ok```
 
 ```ruby
 [
     {
         "id": Long,
-        "specie": String,
-        "name": String,
-        "race": String,
-        "sex": String,
-        "age": String,
-        "isVaccinated": Boolean,
-        "isCastrated": Boolean,
-        "isPedigree": Boolean,
-        "especialCares": Boolean,
-        "isDewormed": Boolean,
-        "size": String,
-        "weight": String,
-        "About": String,
-        "OwnerId": String,
-        "isAdopted": Boolean
+        "postPic": "String",
+        "name": "String",
+        "race": "String",
+        "specie": "String",
+        "sex": "String",
+        "age": "String",
+        "petLocation": "String"
     },
     {
         "id": Long,
-        "specie": String,
-        "name": String,
-        "race": String,
-        "sex": String,
-        "age": String,
-        "isVaccinated": Boolean,
-        "isCastrated": Boolean,
-        "isPedigree": Boolean,
-        "especialCares": Boolean,
-        "isDewormed": Boolean,
-        "size": String,
-        "weight": String,
-        "About": String,
-        "OwnerId": String,
-        "isAdopted": Boolean
-    }
+        "postPic": "String",
+        "name": "String",
+        "race": "String",
+        "specie": "String",
+        "sex": "String",
+        "age": "String",
+        "petLocation": "String"
+    },
+    {
+        "id": Long,
+        "postPic": "String",
+        "name": "String",
+        "race": "String",
+        "specie": "String",
+        "sex": "String",
+        "age": "String",
+        "petLocation": "String"
+    },
 ]
 ```
 
-```status code:``` 200 ```ok```
 
+<h3>update post</h3>
+<h4>Método responsável por atualizar os posts no banco(Você só pode atualizar os seus posts)</h4>
 
-
-<h3>updatePost</h3>
-<h4>Método responsável por atualizar os posts no banco</h4>
-
-```patch```
+```put```
 
 <h4>/postsPets/{postId}</h4>
 <strong>Body:</strong>
@@ -587,21 +664,20 @@ Se o usuário escolher não fechar o aplicativo ficará aberto.
 
 ```ruby
 {
-    "specie": String,
-    "name": String,
-    "race": String,
-    "sex": String,
-    "age": String,
-    "isVaccinated": Boolean,
-    "isCastrated": Boolean,
-    "isPedigree": Boolean,
-    "especialCares": Boolean,
-    "isDewormed": Boolean,
-    "size": String,
-    "weight": String,
-    "About": String,
-    "OwnerId": String,
-    "isAdopted": Boolean
+  "name": "String",
+  "postPic": "String",
+  "race": "String",
+  "sex": "String",
+  "age": "String",
+  "size": "String",
+  "weight": "String",
+  "about": "String",
+  "isAdopted": Boolean,
+  "isCastrated": Boolean,
+  "isVaccinated": Boolean,
+  "isPedigree": Boolean,
+  "isDewormed": Boolean,
+  "isEspecialNeeds": Boolean
 }
 ```
 
@@ -610,6 +686,42 @@ Se o usuário escolher não fechar o aplicativo ficará aberto.
 </h4>
 
 ```status code:``` 200 ```ok```
+
+```ruby
+{
+    "id": 4,
+    "postPic": String, 
+    "name": "String",
+    "race": "String",
+    "specie": "String",
+    "sex": "String",
+    "age": "String",
+    "size": "String",
+    "weight": "String",
+    "about": "String",
+    "petLocation": "String",
+    "isAdopted": false,
+    "isCastrated": true,
+    "isVaccinated": true,
+    "isPedigree": false,
+    "isDewormed": true,
+    "isEspecialNeeds": false,
+    "user": {
+        "id": 2,
+        "name": "String",
+        "email": "String",
+        "password": "String",
+        "birth": "String",
+        "location": "String",
+        "profilePic": "String",
+        "banner": "String",
+        "phone": "String",
+        "instagram": "String",
+        "facebook": "String",
+        "whatsapp": "String"
+    }
+}
+```
 
 <h3>deletePost</h3>
 <h4>Método responsável por apagar um post no banco</h4>
@@ -624,15 +736,41 @@ Se o usuário escolher não fechar o aplicativo ficará aberto.
 
 ```status code:``` 204 ```No Content```
 
-<h3>toLikePost</h3>
-<h4>Método responsável por adicionar os post aos curtidos</h4>
+<h3>get all user Posts</h3>
+<h4>Método responsável por pegar todos os posts do usuário</h4>
 
-```post```
+```get```
 
-<h4>/likedPost/{postId}/{userId}</h4>
+<h4>/likedPost/users</h4>
 
 <h4>
     Return:
 </h4>
 
 ```status code:``` 200 ```OK```
+
+```ruby
+[
+    {
+        "id": Long,
+        "postPic": String,
+        "name": String,
+        "race": String,
+        "specie": String,
+        "sex": String,
+        "age": String,
+        "petLocation": String
+    },
+    {
+        "id": Long,
+        "postPic": String,
+        "name": String,
+        "race": String,
+        "specie": String,
+        "sex": String,
+        "age": String,
+        "petLocation": String
+    },
+]
+
+```
