@@ -76,7 +76,12 @@ class UserController(private val userService: UserService, private val jwtTokenP
     return if (isValid) {
       val userToken = jwtTokenFilter . getUsernameFromToken (token.toString())
       println(" token: $token é valido: $isValid")
-      ResponseEntity.ok().body(this.userService.deleteUserId(userToken.toLong()))
+      val result = this.userService.deleteUserId(userToken.toLong())
+      if (result?.statusCode == HttpStatus.NOT_FOUND) {
+        ResponseEntity.status(HttpStatus.NOT_FOUND).build()
+      } else {
+        ResponseEntity.status(result?.statusCode!!).body(result.body)
+      }
     } else ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("UNAUTHORIZED")
   }
 }
