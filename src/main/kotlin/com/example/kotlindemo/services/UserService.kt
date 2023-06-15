@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service
 import java.util.regex.Pattern
 
 @Service
-class UserService(private val userRepository: UserRepository) {
+class UserService(private val userRepository: UserRepository, private val emailService: EmailService) {
 
     fun getAllUser(): List<UserReturnDTO> =
         this.userRepository.findAll().map { user ->
@@ -31,6 +31,9 @@ class UserService(private val userRepository: UserRepository) {
                 return ResponseEntity.badRequest().body(ReturnUsersValidationsException("Invalid email"))
             }
             val createdUser = this.userRepository.save(user)
+            val subjectMail = "Seja bem vindo ao Pata Amiga <3"
+            val message = "Muito obrigado por fazer parte da nossa comunidades!"
+            emailService.sendMail(createdUser.email, subjectMail, message)
            return ResponseEntity.status(201).body(UserReturnDTO(createdUser))
         }
     }
@@ -58,6 +61,9 @@ class UserService(private val userRepository: UserRepository) {
         val encoder = BCryptPasswordEncoder()
         user.password = encoder.encode(password)
         userRepository.save(user)
+        val subjectMail = "AVISO: Sua senha foi alterada"
+        val message = "Sua senha foi alterada com sucesso!"
+        emailService.sendMail(email, subjectMail, message)
     }
 
     fun deleteUserId(userId: Long): ResponseEntity<Void> {
