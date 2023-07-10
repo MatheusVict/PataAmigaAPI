@@ -43,6 +43,16 @@ data class PostPetsReturnDTO(
 
   val userName: String,
 
+  val userEmail: String,
+
+  val userPhone: String,
+
+  val userWhatsapp: String?,
+
+  val userInstagram: String?,
+
+  val userFacebook: String?,
+
 ) {
   constructor(postPets: PostPets): this (
     id = postPets.id,
@@ -64,6 +74,11 @@ data class PostPetsReturnDTO(
     specie = postPets.specie,
     userPic = postPets.user.profilePic,
     userName = postPets.user.name,
-    petLocation = postPets.petLocation
+    petLocation = postPets.petLocation,
+    userFacebook = postPets.user.facebook,
+    userEmail = postPets.user.email,
+    userWhatsapp = postPets.user.whatsapp,
+    userInstagram = postPets.user.instagram,
+    userPhone = postPets.user.phone
   )
 }
